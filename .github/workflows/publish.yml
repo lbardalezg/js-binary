@@ -1,0 +1,28 @@
+name: Publish
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Install build backend
+        run: pip install build
+      - name: Build sdist and wheel
+        run: python -m build
+      # NOTE: the PyPI project must have a Trusted Publisher configured for this
+      # repository and workflow (pypi.org -> project -> Publishing -> add a new
+      # trusted publisher for the GitHub repo and this workflow file).
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1

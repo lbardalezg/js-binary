@@ -1,0 +1,4321 @@
+{
+  "meta": {
+    "js_binary_version": "1.2.0",
+    "node": "v24.19.0"
+  },
+  "cases": [
+    {
+      "name": "scalar/uint",
+      "schema": "uint",
+      "value": 42,
+      "encoded": "2a",
+      "decoded": 42,
+      "hash": "35"
+    },
+    {
+      "name": "scalar/int",
+      "schema": "int",
+      "value": -42,
+      "encoded": "56",
+      "decoded": -42,
+      "hash": "29"
+    },
+    {
+      "name": "scalar/float",
+      "schema": "float",
+      "value": 1.5,
+      "encoded": "3ff8000000000000",
+      "decoded": 1.5,
+      "hash": "26"
+    },
+    {
+      "name": "scalar/string",
+      "schema": "string",
+      "value": "hello",
+      "encoded": "0568656c6c6f",
+      "decoded": "hello",
+      "hash": "33"
+    },
+    {
+      "name": "scalar/buffer",
+      "schema": "Buffer",
+      "value": {
+        "$type": "buffer",
+        "hex": "0001feff"
+      },
+      "encoded": "040001feff",
+      "decoded": {
+        "$type": "buffer",
+        "hex": "0001feff"
+      },
+      "hash": "02"
+    },
+    {
+      "name": "scalar/boolean",
+      "schema": "boolean",
+      "value": true,
+      "encoded": "01",
+      "decoded": true,
+      "hash": "22"
+    },
+    {
+      "name": "scalar/json",
+      "schema": "json",
+      "value": {
+        "a": 1,
+        "b": [
+          true,
+          null,
+          "x"
+        ]
+      },
+      "encoded": "1b7b2261223a312c2262223a5b747275652c6e756c6c2c2278225d7d",
+      "decoded": {
+        "a": 1,
+        "b": [
+          true,
+          null,
+          "x"
+        ]
+      },
+      "hash": "2a"
+    },
+    {
+      "name": "scalar/oid",
+      "schema": "oid",
+      "value": {
+        "$type": "oid",
+        "hex": "0123456789abcdefabcdef01"
+      },
+      "encoded": "0123456789abcdefabcdef01",
+      "decoded": {
+        "$type": "oid",
+        "hex": "0123456789abcdefabcdef01"
+      },
+      "hash": "2f"
+    },
+    {
+      "name": "scalar/regex",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "ab+c",
+        "flags": "gi"
+      },
+      "encoded": "0461622b6303",
+      "decoded": {
+        "$type": "regex",
+        "source": "ab+c",
+        "flags": "gi"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "scalar/date",
+      "schema": "date",
+      "value": {
+        "$type": "date",
+        "ms": 1700000000123
+      },
+      "encoded": "e000018bcfe5687b",
+      "decoded": {
+        "$type": "date",
+        "ms": 1700000000123
+      },
+      "hash": "24"
+    },
+    {
+      "name": "uint/bound/0_0",
+      "schema": "uint",
+      "value": 0,
+      "encoded": "00",
+      "decoded": 0,
+      "hash": "35"
+    },
+    {
+      "name": "uint/bound/1_1",
+      "schema": "uint",
+      "value": 1,
+      "encoded": "01",
+      "decoded": 1,
+      "hash": "35"
+    },
+    {
+      "name": "uint/bound/2_127",
+      "schema": "uint",
+      "value": 127,
+      "encoded": "7f",
+      "decoded": 127,
+      "hash": "35"
+    },
+    {
+      "name": "uint/bound/3_128",
+      "schema": "uint",
+      "value": 128,
+      "encoded": "8080",
+      "decoded": 128,
+      "hash": "35"
+    },
+    {
+      "name": "uint/bound/4_16383",
+      "schema": "uint",
+      "value": 16383,
+      "encoded": "bfff",
+      "decoded": 16383,
+      "hash": "35"
+    },
+    {
+      "name": "uint/bound/5_16384",
+      "schema": "uint",
+      "value": 16384,
+      "encoded": "c0004000",
+      "decoded": 16384,
+      "hash": "35"
+    },
+    {
+      "name": "uint/bound/6_536870911",
+      "schema": "uint",
+      "value": 536870911,
+      "encoded": "dfffffff",
+      "decoded": 536870911,
+      "hash": "35"
+    },
+    {
+      "name": "uint/bound/7_536870912",
+      "schema": "uint",
+      "value": 536870912,
+      "encoded": "e000000020000000",
+      "decoded": 536870912,
+      "hash": "35"
+    },
+    {
+      "name": "uint/bound/8_9007199254740991",
+      "schema": "uint",
+      "value": 9007199254740991,
+      "encoded": "e01fffffffffffff",
+      "decoded": 9007199254740991,
+      "hash": "35"
+    },
+    {
+      "name": "uint/bound/9_9007199254740992",
+      "schema": "uint",
+      "value": 9007199254740992,
+      "encoded": "e020000000000000",
+      "decoded": 9007199254740992,
+      "hash": "35"
+    },
+    {
+      "name": "uint/bound-sweep",
+      "schema": [
+        "uint"
+      ],
+      "value": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        536870911,
+        536870912,
+        9007199254740991,
+        9007199254740992
+      ],
+      "encoded": "0a00017f8080bfffc0004000dfffffffe000000020000000e01fffffffffffffe020000000000000",
+      "decoded": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        536870911,
+        536870912,
+        9007199254740991,
+        9007199254740992
+      ],
+      "hash": "1b35"
+    },
+    {
+      "name": "int/bound/0_neg64",
+      "schema": "int",
+      "value": -64,
+      "encoded": "40",
+      "decoded": -64,
+      "hash": "29"
+    },
+    {
+      "name": "int/bound/1_63",
+      "schema": "int",
+      "value": 63,
+      "encoded": "3f",
+      "decoded": 63,
+      "hash": "29"
+    },
+    {
+      "name": "int/bound/2_neg65",
+      "schema": "int",
+      "value": -65,
+      "encoded": "bfbf",
+      "decoded": -65,
+      "hash": "29"
+    },
+    {
+      "name": "int/bound/3_64",
+      "schema": "int",
+      "value": 64,
+      "encoded": "8040",
+      "decoded": 64,
+      "hash": "29"
+    },
+    {
+      "name": "int/bound/4_neg8192",
+      "schema": "int",
+      "value": -8192,
+      "encoded": "a000",
+      "decoded": -8192,
+      "hash": "29"
+    },
+    {
+      "name": "int/bound/5_8191",
+      "schema": "int",
+      "value": 8191,
+      "encoded": "9fff",
+      "decoded": 8191,
+      "hash": "29"
+    },
+    {
+      "name": "int/bound/6_neg8193",
+      "schema": "int",
+      "value": -8193,
+      "encoded": "dfffdfff",
+      "decoded": -8193,
+      "hash": "29"
+    },
+    {
+      "name": "int/bound/7_8192",
+      "schema": "int",
+      "value": 8192,
+      "encoded": "c0002000",
+      "decoded": 8192,
+      "hash": "29"
+    },
+    {
+      "name": "int/bound/8_neg268435456",
+      "schema": "int",
+      "value": -268435456,
+      "encoded": "d0000000",
+      "decoded": -268435456,
+      "hash": "29"
+    },
+    {
+      "name": "int/bound/9_268435455",
+      "schema": "int",
+      "value": 268435455,
+      "encoded": "cfffffff",
+      "decoded": 268435455,
+      "hash": "29"
+    },
+    {
+      "name": "int/bound/10_neg268435457",
+      "schema": "int",
+      "value": -268435457,
+      "encoded": "ffffffffefffffff",
+      "decoded": -268435457,
+      "hash": "29"
+    },
+    {
+      "name": "int/bound/11_268435456",
+      "schema": "int",
+      "value": 268435456,
+      "encoded": "e000000010000000",
+      "decoded": 268435456,
+      "hash": "29"
+    },
+    {
+      "name": "int/bound/12_neg9007199254740992",
+      "schema": "int",
+      "value": -9007199254740992,
+      "encoded": "ffe0000000000000",
+      "decoded": -9007199254740992,
+      "hash": "29"
+    },
+    {
+      "name": "int/bound/13_9007199254740992",
+      "schema": "int",
+      "value": 9007199254740992,
+      "encoded": "e020000000000000",
+      "decoded": 9007199254740992,
+      "hash": "29"
+    },
+    {
+      "name": "int/bound-sweep",
+      "schema": [
+        "int"
+      ],
+      "value": [
+        -64,
+        63,
+        -65,
+        64,
+        -8192,
+        8191,
+        -8193,
+        8192,
+        -268435456,
+        268435455,
+        -268435457,
+        268435456,
+        -9007199254740992,
+        9007199254740992
+      ],
+      "encoded": "0e403fbfbf8040a0009fffdfffdfffc0002000d0000000cfffffffffffffffefffffffe000000010000000ffe0000000000000e020000000000000",
+      "decoded": [
+        -64,
+        63,
+        -65,
+        64,
+        -8192,
+        8191,
+        -8193,
+        8192,
+        -268435456,
+        268435455,
+        -268435457,
+        268435456,
+        -9007199254740992,
+        9007199254740992
+      ],
+      "hash": "1b29"
+    },
+    {
+      "name": "float/zero",
+      "schema": "float",
+      "value": 0,
+      "encoded": "0000000000000000",
+      "decoded": 0,
+      "hash": "26"
+    },
+    {
+      "name": "float/neg-zero",
+      "schema": "float",
+      "value": {
+        "$type": "number",
+        "value": "-0"
+      },
+      "encoded": "8000000000000000",
+      "decoded": {
+        "$type": "number",
+        "value": "-0"
+      },
+      "hash": "26"
+    },
+    {
+      "name": "float/0.1",
+      "schema": "float",
+      "value": 0.1,
+      "encoded": "3fb999999999999a",
+      "decoded": 0.1,
+      "hash": "26"
+    },
+    {
+      "name": "float/neg-0.1",
+      "schema": "float",
+      "value": -0.1,
+      "encoded": "bfb999999999999a",
+      "decoded": -0.1,
+      "hash": "26"
+    },
+    {
+      "name": "float/1.5",
+      "schema": "float",
+      "value": 1.5,
+      "encoded": "3ff8000000000000",
+      "decoded": 1.5,
+      "hash": "26"
+    },
+    {
+      "name": "float/1e21",
+      "schema": "float",
+      "value": 1e+21,
+      "encoded": "444b1ae4d6e2ef50",
+      "decoded": 1e+21,
+      "hash": "26"
+    },
+    {
+      "name": "float/1e-7",
+      "schema": "float",
+      "value": 1e-7,
+      "encoded": "3e7ad7f29abcaf48",
+      "decoded": 1e-7,
+      "hash": "26"
+    },
+    {
+      "name": "float/1e-6",
+      "schema": "float",
+      "value": 0.000001,
+      "encoded": "3eb0c6f7a0b5ed8d",
+      "decoded": 0.000001,
+      "hash": "26"
+    },
+    {
+      "name": "float/1e20",
+      "schema": "float",
+      "value": 100000000000000000000,
+      "encoded": "4415af1d78b58c40",
+      "decoded": 100000000000000000000,
+      "hash": "26"
+    },
+    {
+      "name": "float/pi",
+      "schema": "float",
+      "value": 3.141592653589793,
+      "encoded": "400921fb54442d18",
+      "decoded": 3.141592653589793,
+      "hash": "26"
+    },
+    {
+      "name": "float/NaN",
+      "schema": "float",
+      "value": {
+        "$type": "number",
+        "value": "NaN"
+      },
+      "encoded": "7ff8000000000000",
+      "decoded": {
+        "$type": "number",
+        "value": "NaN"
+      },
+      "hash": "26"
+    },
+    {
+      "name": "float/Infinity",
+      "schema": "float",
+      "value": {
+        "$type": "number",
+        "value": "Infinity"
+      },
+      "encoded": "7ff0000000000000",
+      "decoded": {
+        "$type": "number",
+        "value": "Infinity"
+      },
+      "hash": "26"
+    },
+    {
+      "name": "float/-Infinity",
+      "schema": "float",
+      "value": {
+        "$type": "number",
+        "value": "-Infinity"
+      },
+      "encoded": "fff0000000000000",
+      "decoded": {
+        "$type": "number",
+        "value": "-Infinity"
+      },
+      "hash": "26"
+    },
+    {
+      "name": "float/max-value",
+      "schema": "float",
+      "value": 1.7976931348623157e+308,
+      "encoded": "7fefffffffffffff",
+      "decoded": 1.7976931348623157e+308,
+      "hash": "26"
+    },
+    {
+      "name": "float/min-value",
+      "schema": "float",
+      "value": 5e-324,
+      "encoded": "0000000000000001",
+      "decoded": 5e-324,
+      "hash": "26"
+    },
+    {
+      "name": "float/2^53",
+      "schema": "float",
+      "value": 9007199254740992,
+      "encoded": "4340000000000000",
+      "decoded": 9007199254740992,
+      "hash": "26"
+    },
+    {
+      "name": "string/empty",
+      "schema": "string",
+      "value": "",
+      "encoded": "00",
+      "decoded": "",
+      "hash": "33"
+    },
+    {
+      "name": "string/ascii",
+      "schema": "string",
+      "value": "The quick brown fox jumps over the lazy dog",
+      "encoded": "2b54686520717569636b2062726f776e20666f78206a756d7073206f76657220746865206c617a7920646f67",
+      "decoded": "The quick brown fox jumps over the lazy dog",
+      "hash": "33"
+    },
+    {
+      "name": "string/accented",
+      "schema": "string",
+      "value": "café naïve résumé señor",
+      "encoded": "1c636166c3a9206e61c3af76652072c3a973756dc3a9207365c3b16f72",
+      "decoded": "café naïve résumé señor",
+      "hash": "33"
+    },
+    {
+      "name": "string/emoji-surrogate-pair",
+      "schema": "string",
+      "value": "emoji: 😀🚀🇧🇷",
+      "encoded": "17656d6f6a693a20f09f9880f09f9a80f09f87a7f09f87b7",
+      "decoded": "emoji: 😀🚀🇧🇷",
+      "hash": "33"
+    },
+    {
+      "name": "string/cjk",
+      "schema": "string",
+      "value": "你好世界 こんにちは 안녕하세요",
+      "encoded": "2ce4bda0e5a5bde4b896e7958c20e38193e38293e381abe381a1e381af20ec9588eb8595ed9598ec84b8ec9a94",
+      "decoded": "你好世界 こんにちは 안녕하세요",
+      "hash": "33"
+    },
+    {
+      "name": "buffer/empty",
+      "schema": "Buffer",
+      "value": {
+        "$type": "buffer",
+        "hex": ""
+      },
+      "encoded": "00",
+      "decoded": {
+        "$type": "buffer",
+        "hex": ""
+      },
+      "hash": "02"
+    },
+    {
+      "name": "buffer/single-zero",
+      "schema": "Buffer",
+      "value": {
+        "$type": "buffer",
+        "hex": "00"
+      },
+      "encoded": "0100",
+      "decoded": {
+        "$type": "buffer",
+        "hex": "00"
+      },
+      "hash": "02"
+    },
+    {
+      "name": "buffer/all-bytes",
+      "schema": "Buffer",
+      "value": {
+        "$type": "buffer",
+        "hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff"
+      },
+      "encoded": "8100000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff",
+      "decoded": {
+        "$type": "buffer",
+        "hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff"
+      },
+      "hash": "02"
+    },
+    {
+      "name": "buffer/utf8-bytes",
+      "schema": "Buffer",
+      "value": {
+        "$type": "buffer",
+        "hex": "68c3a96c6c6f20f09f9880"
+      },
+      "encoded": "0b68c3a96c6c6f20f09f9880",
+      "decoded": {
+        "$type": "buffer",
+        "hex": "68c3a96c6c6f20f09f9880"
+      },
+      "hash": "02"
+    },
+    {
+      "name": "boolean/true",
+      "schema": "boolean",
+      "value": true,
+      "encoded": "01",
+      "decoded": true,
+      "hash": "22"
+    },
+    {
+      "name": "boolean/false",
+      "schema": "boolean",
+      "value": false,
+      "encoded": "00",
+      "decoded": false,
+      "hash": "22"
+    },
+    {
+      "name": "json/scalar-number",
+      "schema": "json",
+      "value": 3.25,
+      "encoded": "04332e3235",
+      "decoded": 3.25,
+      "hash": "2a"
+    },
+    {
+      "name": "json/scalar-string",
+      "schema": "json",
+      "value": "plain",
+      "encoded": "0722706c61696e22",
+      "decoded": "plain",
+      "hash": "2a"
+    },
+    {
+      "name": "json/scalar-null",
+      "schema": "json",
+      "value": null,
+      "encoded": "046e756c6c",
+      "decoded": null,
+      "hash": "2a"
+    },
+    {
+      "name": "json/scalar-array",
+      "schema": "json",
+      "value": [
+        1,
+        "two",
+        false,
+        null
+      ],
+      "encoded": "145b312c2274776f222c66616c73652c6e756c6c5d",
+      "decoded": [
+        1,
+        "two",
+        false,
+        null
+      ],
+      "hash": "2a"
+    },
+    {
+      "name": "json/empty-object",
+      "schema": "json",
+      "value": {},
+      "encoded": "027b7d",
+      "decoded": {},
+      "hash": "2a"
+    },
+    {
+      "name": "json/empty-array",
+      "schema": "json",
+      "value": [],
+      "encoded": "025b5d",
+      "decoded": [],
+      "hash": "2a"
+    },
+    {
+      "name": "json/nested",
+      "schema": "json",
+      "value": {
+        "nulls": [
+          null,
+          null
+        ],
+        "unicode": "héllo 你好 😀",
+        "one": 1,
+        "big": 1e+21,
+        "negzero": {
+          "$type": "number",
+          "value": "-0"
+        },
+        "flags": [
+          true,
+          false
+        ],
+        "nested": {
+          "a": {
+            "b": [
+              1,
+              2,
+              {
+                "c": 3.5
+              }
+            ]
+          }
+        }
+      },
+      "encoded": "808e7b226e756c6c73223a5b6e756c6c2c6e756c6c5d2c22756e69636f6465223a2268c3a96c6c6f20e4bda0e5a5bd20f09f9880222c226f6e65223a312c22626967223a31652b32312c226e65677a65726f223a302c22666c616773223a5b747275652c66616c73655d2c226e6573746564223a7b2261223a7b2262223a5b312c322c7b2263223a332e357d5d7d7d7d",
+      "decoded": {
+        "nulls": [
+          null,
+          null
+        ],
+        "unicode": "héllo 你好 😀",
+        "one": 1,
+        "big": 1e+21,
+        "negzero": 0,
+        "flags": [
+          true,
+          false
+        ],
+        "nested": {
+          "a": {
+            "b": [
+              1,
+              2,
+              {
+                "c": 3.5
+              }
+            ]
+          }
+        }
+      },
+      "hash": "2a"
+    },
+    {
+      "name": "json/object-wrapper",
+      "schema": {
+        "j": "json"
+      },
+      "value": {
+        "j": {
+          "plain": "object",
+          "list": [
+            1,
+            2,
+            3
+          ],
+          "deep": {
+            "k": null
+          }
+        }
+      },
+      "encoded": "337b22706c61696e223a226f626a656374222c226c697374223a5b312c322c335d2c2264656570223a7b226b223a6e756c6c7d7d",
+      "decoded": {
+        "j": {
+          "plain": "object",
+          "list": [
+            1,
+            2,
+            3
+          ],
+          "deep": {
+            "k": null
+          }
+        }
+      },
+      "hash": "3b012a"
+    },
+    {
+      "name": "oid/lowercase",
+      "schema": "oid",
+      "value": {
+        "$type": "oid",
+        "hex": "0123456789abcdefabcdef01"
+      },
+      "encoded": "0123456789abcdefabcdef01",
+      "decoded": {
+        "$type": "oid",
+        "hex": "0123456789abcdefabcdef01"
+      },
+      "hash": "2f"
+    },
+    {
+      "name": "oid/uppercase",
+      "schema": "oid",
+      "value": {
+        "$type": "oid",
+        "hex": "0123456789ABCDEFABCDEF01"
+      },
+      "encoded": "0123456789abcdefabcdef01",
+      "decoded": {
+        "$type": "oid",
+        "hex": "0123456789abcdefabcdef01"
+      },
+      "hash": "2f"
+    },
+    {
+      "name": "oid/all-zero",
+      "schema": "oid",
+      "value": {
+        "$type": "oid",
+        "hex": "000000000000000000000000"
+      },
+      "encoded": "000000000000000000000000",
+      "decoded": {
+        "$type": "oid",
+        "hex": "000000000000000000000000"
+      },
+      "hash": "2f"
+    },
+    {
+      "name": "oid/all-f",
+      "schema": "oid",
+      "value": {
+        "$type": "oid",
+        "hex": "ffffffffffffffffffffffff"
+      },
+      "encoded": "ffffffffffffffffffffffff",
+      "decoded": {
+        "$type": "oid",
+        "hex": "ffffffffffffffffffffffff"
+      },
+      "hash": "2f"
+    },
+    {
+      "name": "regex/0_flags-none",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "a(b+)c[0-9]",
+        "flags": ""
+      },
+      "encoded": "0b6128622b29635b302d395d00",
+      "decoded": {
+        "$type": "regex",
+        "source": "a(b+)c[0-9]",
+        "flags": ""
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/1_flags-g",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "a(b+)c[0-9]",
+        "flags": "g"
+      },
+      "encoded": "0b6128622b29635b302d395d01",
+      "decoded": {
+        "$type": "regex",
+        "source": "a(b+)c[0-9]",
+        "flags": "g"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/2_flags-i",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "a(b+)c[0-9]",
+        "flags": "i"
+      },
+      "encoded": "0b6128622b29635b302d395d02",
+      "decoded": {
+        "$type": "regex",
+        "source": "a(b+)c[0-9]",
+        "flags": "i"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/3_flags-m",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "a(b+)c[0-9]",
+        "flags": "m"
+      },
+      "encoded": "0b6128622b29635b302d395d04",
+      "decoded": {
+        "$type": "regex",
+        "source": "a(b+)c[0-9]",
+        "flags": "m"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/4_flags-gi",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "a(b+)c[0-9]",
+        "flags": "gi"
+      },
+      "encoded": "0b6128622b29635b302d395d03",
+      "decoded": {
+        "$type": "regex",
+        "source": "a(b+)c[0-9]",
+        "flags": "gi"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/5_flags-gim",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "a(b+)c[0-9]",
+        "flags": "gim"
+      },
+      "encoded": "0b6128622b29635b302d395d07",
+      "decoded": {
+        "$type": "regex",
+        "source": "a(b+)c[0-9]",
+        "flags": "gim"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/6_flags-none",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "^\\d+\\.\\d+$",
+        "flags": ""
+      },
+      "encoded": "0a5e5c642b5c2e5c642b2400",
+      "decoded": {
+        "$type": "regex",
+        "source": "^\\d+\\.\\d+$",
+        "flags": ""
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/7_flags-g",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "^\\d+\\.\\d+$",
+        "flags": "g"
+      },
+      "encoded": "0a5e5c642b5c2e5c642b2401",
+      "decoded": {
+        "$type": "regex",
+        "source": "^\\d+\\.\\d+$",
+        "flags": "g"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/8_flags-i",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "^\\d+\\.\\d+$",
+        "flags": "i"
+      },
+      "encoded": "0a5e5c642b5c2e5c642b2402",
+      "decoded": {
+        "$type": "regex",
+        "source": "^\\d+\\.\\d+$",
+        "flags": "i"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/9_flags-m",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "^\\d+\\.\\d+$",
+        "flags": "m"
+      },
+      "encoded": "0a5e5c642b5c2e5c642b2404",
+      "decoded": {
+        "$type": "regex",
+        "source": "^\\d+\\.\\d+$",
+        "flags": "m"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/10_flags-gi",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "^\\d+\\.\\d+$",
+        "flags": "gi"
+      },
+      "encoded": "0a5e5c642b5c2e5c642b2403",
+      "decoded": {
+        "$type": "regex",
+        "source": "^\\d+\\.\\d+$",
+        "flags": "gi"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/11_flags-gim",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "^\\d+\\.\\d+$",
+        "flags": "gim"
+      },
+      "encoded": "0a5e5c642b5c2e5c642b2407",
+      "decoded": {
+        "$type": "regex",
+        "source": "^\\d+\\.\\d+$",
+        "flags": "gim"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/12_flags-none",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "[/\\\\]",
+        "flags": ""
+      },
+      "encoded": "055b2f5c5c5d00",
+      "decoded": {
+        "$type": "regex",
+        "source": "[/\\\\]",
+        "flags": ""
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/13_flags-g",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "[/\\\\]",
+        "flags": "g"
+      },
+      "encoded": "055b2f5c5c5d01",
+      "decoded": {
+        "$type": "regex",
+        "source": "[/\\\\]",
+        "flags": "g"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/14_flags-i",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "[/\\\\]",
+        "flags": "i"
+      },
+      "encoded": "055b2f5c5c5d02",
+      "decoded": {
+        "$type": "regex",
+        "source": "[/\\\\]",
+        "flags": "i"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/15_flags-m",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "[/\\\\]",
+        "flags": "m"
+      },
+      "encoded": "055b2f5c5c5d04",
+      "decoded": {
+        "$type": "regex",
+        "source": "[/\\\\]",
+        "flags": "m"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/16_flags-gi",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "[/\\\\]",
+        "flags": "gi"
+      },
+      "encoded": "055b2f5c5c5d03",
+      "decoded": {
+        "$type": "regex",
+        "source": "[/\\\\]",
+        "flags": "gi"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/17_flags-gim",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "[/\\\\]",
+        "flags": "gim"
+      },
+      "encoded": "055b2f5c5c5d07",
+      "decoded": {
+        "$type": "regex",
+        "source": "[/\\\\]",
+        "flags": "gim"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/18_flags-none",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "(?:x|y)*",
+        "flags": ""
+      },
+      "encoded": "08283f3a787c79292a00",
+      "decoded": {
+        "$type": "regex",
+        "source": "(?:x|y)*",
+        "flags": ""
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/19_flags-g",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "(?:x|y)*",
+        "flags": "g"
+      },
+      "encoded": "08283f3a787c79292a01",
+      "decoded": {
+        "$type": "regex",
+        "source": "(?:x|y)*",
+        "flags": "g"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/20_flags-i",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "(?:x|y)*",
+        "flags": "i"
+      },
+      "encoded": "08283f3a787c79292a02",
+      "decoded": {
+        "$type": "regex",
+        "source": "(?:x|y)*",
+        "flags": "i"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/21_flags-m",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "(?:x|y)*",
+        "flags": "m"
+      },
+      "encoded": "08283f3a787c79292a04",
+      "decoded": {
+        "$type": "regex",
+        "source": "(?:x|y)*",
+        "flags": "m"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/22_flags-gi",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "(?:x|y)*",
+        "flags": "gi"
+      },
+      "encoded": "08283f3a787c79292a03",
+      "decoded": {
+        "$type": "regex",
+        "source": "(?:x|y)*",
+        "flags": "gi"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/23_flags-gim",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "(?:x|y)*",
+        "flags": "gim"
+      },
+      "encoded": "08283f3a787c79292a07",
+      "decoded": {
+        "$type": "regex",
+        "source": "(?:x|y)*",
+        "flags": "gim"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/24_flags-none",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "foo|bar",
+        "flags": ""
+      },
+      "encoded": "07666f6f7c62617200",
+      "decoded": {
+        "$type": "regex",
+        "source": "foo|bar",
+        "flags": ""
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/25_flags-g",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "foo|bar",
+        "flags": "g"
+      },
+      "encoded": "07666f6f7c62617201",
+      "decoded": {
+        "$type": "regex",
+        "source": "foo|bar",
+        "flags": "g"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/26_flags-i",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "foo|bar",
+        "flags": "i"
+      },
+      "encoded": "07666f6f7c62617202",
+      "decoded": {
+        "$type": "regex",
+        "source": "foo|bar",
+        "flags": "i"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/27_flags-m",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "foo|bar",
+        "flags": "m"
+      },
+      "encoded": "07666f6f7c62617204",
+      "decoded": {
+        "$type": "regex",
+        "source": "foo|bar",
+        "flags": "m"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/28_flags-gi",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "foo|bar",
+        "flags": "gi"
+      },
+      "encoded": "07666f6f7c62617203",
+      "decoded": {
+        "$type": "regex",
+        "source": "foo|bar",
+        "flags": "gi"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/29_flags-gim",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "foo|bar",
+        "flags": "gim"
+      },
+      "encoded": "07666f6f7c62617207",
+      "decoded": {
+        "$type": "regex",
+        "source": "foo|bar",
+        "flags": "gim"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/30_flags-none",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "(?:)",
+        "flags": ""
+      },
+      "encoded": "04283f3a2900",
+      "decoded": {
+        "$type": "regex",
+        "source": "(?:)",
+        "flags": ""
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/31_flags-g",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "(?:)",
+        "flags": "g"
+      },
+      "encoded": "04283f3a2901",
+      "decoded": {
+        "$type": "regex",
+        "source": "(?:)",
+        "flags": "g"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/32_flags-i",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "(?:)",
+        "flags": "i"
+      },
+      "encoded": "04283f3a2902",
+      "decoded": {
+        "$type": "regex",
+        "source": "(?:)",
+        "flags": "i"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/33_flags-m",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "(?:)",
+        "flags": "m"
+      },
+      "encoded": "04283f3a2904",
+      "decoded": {
+        "$type": "regex",
+        "source": "(?:)",
+        "flags": "m"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/34_flags-gi",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "(?:)",
+        "flags": "gi"
+      },
+      "encoded": "04283f3a2903",
+      "decoded": {
+        "$type": "regex",
+        "source": "(?:)",
+        "flags": "gi"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "regex/35_flags-gim",
+      "schema": "regex",
+      "value": {
+        "$type": "regex",
+        "source": "(?:)",
+        "flags": "gim"
+      },
+      "encoded": "04283f3a2907",
+      "decoded": {
+        "$type": "regex",
+        "source": "(?:)",
+        "flags": "gim"
+      },
+      "hash": "32"
+    },
+    {
+      "name": "date/epoch",
+      "schema": "date",
+      "value": {
+        "$type": "date",
+        "ms": 0
+      },
+      "encoded": "00",
+      "decoded": {
+        "$type": "date",
+        "ms": 0
+      },
+      "hash": "24"
+    },
+    {
+      "name": "date/with-ms",
+      "schema": "date",
+      "value": {
+        "$type": "date",
+        "ms": 1700000000123
+      },
+      "encoded": "e000018bcfe5687b",
+      "decoded": {
+        "$type": "date",
+        "ms": 1700000000123
+      },
+      "hash": "24"
+    },
+    {
+      "name": "date/large-valid",
+      "schema": "date",
+      "value": {
+        "$type": "date",
+        "ms": 8640000000000000
+      },
+      "encoded": "e01eb208c2dc0000",
+      "decoded": {
+        "$type": "date",
+        "ms": 8640000000000000
+      },
+      "hash": "24"
+    },
+    {
+      "name": "object/nested-simple",
+      "schema": {
+        "a": {
+          "b": {
+            "c": "int"
+          }
+        }
+      },
+      "value": {
+        "a": {
+          "b": {
+            "c": 7
+          }
+        }
+      },
+      "encoded": "07",
+      "decoded": {
+        "a": {
+          "b": {
+            "c": 7
+          }
+        }
+      },
+      "hash": "3b013b013b0129"
+    },
+    {
+      "name": "object/nested-deep",
+      "schema": {
+        "a": {
+          "b": {
+            "c": {
+              "d": {
+                "e": [
+                  "int"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "value": {
+        "a": {
+          "b": {
+            "c": {
+              "d": {
+                "e": [
+                  1,
+                  2,
+                  3
+                ]
+              }
+            }
+          }
+        }
+      },
+      "encoded": "03010203",
+      "decoded": {
+        "a": {
+          "b": {
+            "c": {
+              "d": {
+                "e": [
+                  1,
+                  2,
+                  3
+                ]
+              }
+            }
+          }
+        }
+      },
+      "hash": "3b013b013b013b013b01a9"
+    },
+    {
+      "name": "optional/present-value",
+      "schema": {
+        "a": "int",
+        "b?": "string"
+      },
+      "value": {
+        "a": 1,
+        "b": "present"
+      },
+      "encoded": "01010770726573656e74",
+      "decoded": {
+        "a": 1,
+        "b": "present"
+      },
+      "hash": "3b022973"
+    },
+    {
+      "name": "optional/present-null",
+      "schema": {
+        "a": "int",
+        "b?": "string"
+      },
+      "value": {
+        "a": 1,
+        "b": null
+      },
+      "encoded": "0100",
+      "decoded": {
+        "a": 1,
+        "b": {
+          "$type": "undefined"
+        }
+      },
+      "hash": "3b022973"
+    },
+    {
+      "name": "optional/absent",
+      "schema": {
+        "a": "int",
+        "b?": "string"
+      },
+      "value": {
+        "a": 1
+      },
+      "encoded": "0100",
+      "decoded": {
+        "a": 1,
+        "b": {
+          "$type": "undefined"
+        }
+      },
+      "hash": "3b022973"
+    },
+    {
+      "name": "optional/absent-undefined",
+      "schema": {
+        "a": "int",
+        "b?": "string"
+      },
+      "value": {
+        "a": 1,
+        "b": {
+          "$type": "undefined"
+        }
+      },
+      "encoded": "0100",
+      "decoded": {
+        "a": 1,
+        "b": {
+          "$type": "undefined"
+        }
+      },
+      "hash": "3b022973"
+    },
+    {
+      "name": "optional/present-empty-string",
+      "schema": {
+        "b?": "string"
+      },
+      "value": {
+        "b": ""
+      },
+      "encoded": "0100",
+      "decoded": {
+        "b": ""
+      },
+      "hash": "3b0173"
+    },
+    {
+      "name": "optional/present-zero",
+      "schema": {
+        "n?": "uint"
+      },
+      "value": {
+        "n": 0
+      },
+      "encoded": "0100",
+      "decoded": {
+        "n": 0
+      },
+      "hash": "3b0175"
+    },
+    {
+      "name": "optional/array-present",
+      "schema": {
+        "n": "uint",
+        "items?": [
+          "int"
+        ]
+      },
+      "value": {
+        "n": 3,
+        "items": [
+          1,
+          2,
+          3
+        ]
+      },
+      "encoded": "030103010203",
+      "decoded": {
+        "n": 3,
+        "items": [
+          1,
+          2,
+          3
+        ]
+      },
+      "hash": "3b0235e9"
+    },
+    {
+      "name": "optional/array-null",
+      "schema": {
+        "n": "uint",
+        "items?": [
+          "int"
+        ]
+      },
+      "value": {
+        "n": 0,
+        "items": null
+      },
+      "encoded": "0000",
+      "decoded": {
+        "n": 0,
+        "items": {
+          "$type": "undefined"
+        }
+      },
+      "hash": "3b0235e9"
+    },
+    {
+      "name": "optional/array-absent",
+      "schema": {
+        "n": "uint",
+        "items?": [
+          "int"
+        ]
+      },
+      "value": {
+        "n": 0
+      },
+      "encoded": "0000",
+      "decoded": {
+        "n": 0,
+        "items": {
+          "$type": "undefined"
+        }
+      },
+      "hash": "3b0235e9"
+    },
+    {
+      "name": "array/of-int",
+      "schema": {
+        "list": [
+          "int"
+        ]
+      },
+      "value": {
+        "list": [
+          -1,
+          0,
+          1,
+          2
+        ]
+      },
+      "encoded": "047f000102",
+      "decoded": {
+        "list": [
+          -1,
+          0,
+          1,
+          2
+        ]
+      },
+      "hash": "3b01a9"
+    },
+    {
+      "name": "array/of-string",
+      "schema": {
+        "list": [
+          "string"
+        ]
+      },
+      "value": {
+        "list": [
+          "a",
+          "",
+          "c"
+        ]
+      },
+      "encoded": "030161000163",
+      "decoded": {
+        "list": [
+          "a",
+          "",
+          "c"
+        ]
+      },
+      "hash": "3b01b3"
+    },
+    {
+      "name": "array/of-object",
+      "schema": {
+        "items": [
+          {
+            "x": "int",
+            "y": "string"
+          }
+        ]
+      },
+      "value": {
+        "items": [
+          {
+            "x": 1,
+            "y": "one"
+          },
+          {
+            "x": 2,
+            "y": "two"
+          }
+        ]
+      },
+      "encoded": "0201036f6e65020374776f",
+      "decoded": {
+        "items": [
+          {
+            "x": 1,
+            "y": "one"
+          },
+          {
+            "x": 2,
+            "y": "two"
+          }
+        ]
+      },
+      "hash": "3b01bb022933"
+    },
+    {
+      "name": "array/empty",
+      "schema": {
+        "list": [
+          "int"
+        ]
+      },
+      "value": {
+        "list": []
+      },
+      "encoded": "00",
+      "decoded": {
+        "list": []
+      },
+      "hash": "3b01a9"
+    },
+    {
+      "name": "array/top-level-int",
+      "schema": [
+        "int"
+      ],
+      "value": [
+        5,
+        -5,
+        0
+      ],
+      "encoded": "03057b00",
+      "decoded": [
+        5,
+        -5,
+        0
+      ],
+      "hash": "1b29"
+    },
+    {
+      "name": "array/top-level-string",
+      "schema": [
+        "string"
+      ],
+      "value": [
+        "x",
+        "y"
+      ],
+      "encoded": "0201780179",
+      "decoded": [
+        "x",
+        "y"
+      ],
+      "hash": "1b33"
+    },
+    {
+      "name": "array/top-level-buffer",
+      "schema": [
+        "Buffer"
+      ],
+      "value": [
+        {
+          "$type": "buffer",
+          "hex": "0102"
+        },
+        {
+          "$type": "buffer",
+          "hex": ""
+        }
+      ],
+      "encoded": "0202010200",
+      "decoded": [
+        {
+          "$type": "buffer",
+          "hex": "0102"
+        },
+        {
+          "$type": "buffer",
+          "hex": ""
+        }
+      ],
+      "hash": "1b02"
+    },
+    {
+      "name": "combined/all-types",
+      "schema": {
+        "u": "uint",
+        "i": "int",
+        "f": "float",
+        "s": "string",
+        "b": "Buffer",
+        "bool": "boolean",
+        "j": "json",
+        "o": "oid",
+        "re": "regex",
+        "d": "date",
+        "optStr?": "string",
+        "nums": [
+          "int"
+        ],
+        "recs": [
+          {
+            "k": "string",
+            "v": "float"
+          }
+        ],
+        "optArr?": [
+          "uint"
+        ]
+      },
+      "value": {
+        "u": 12345,
+        "i": -54321,
+        "f": 3.5,
+        "s": "combo",
+        "b": {
+          "$type": "buffer",
+          "hex": "deadbeef"
+        },
+        "bool": false,
+        "j": {
+          "nested": [
+            1,
+            null,
+            "x"
+          ],
+          "z": 1e+21
+        },
+        "o": {
+          "$type": "oid",
+          "hex": "0123456789abcdefabcdef01"
+        },
+        "re": {
+          "$type": "regex",
+          "source": "x(y)?",
+          "flags": "gim"
+        },
+        "d": {
+          "$type": "date",
+          "ms": 1700000000123
+        },
+        "nums": [
+          1,
+          -2,
+          3
+        ],
+        "recs": [
+          {
+            "k": "a",
+            "v": 0.5
+          },
+          {
+            "k": "b",
+            "v": -1e-7
+          }
+        ]
+      },
+      "encoded": "b039dfff2bcf400c00000000000005636f6d626f04deadbeef00217b226e6573746564223a5b312c6e756c6c2c2278225d2c227a223a31652b32317d0123456789abcdefabcdef0105782879293f07e000018bcfe5687b0003017e030201613fe00000000000000162be7ad7f29abcaf4800",
+      "decoded": {
+        "u": 12345,
+        "i": -54321,
+        "f": 3.5,
+        "s": "combo",
+        "b": {
+          "$type": "buffer",
+          "hex": "deadbeef"
+        },
+        "bool": false,
+        "j": {
+          "nested": [
+            1,
+            null,
+            "x"
+          ],
+          "z": 1e+21
+        },
+        "o": {
+          "$type": "oid",
+          "hex": "0123456789abcdefabcdef01"
+        },
+        "re": {
+          "$type": "regex",
+          "source": "x(y)?",
+          "flags": "gim"
+        },
+        "d": {
+          "$type": "date",
+          "ms": 1700000000123
+        },
+        "optStr": {
+          "$type": "undefined"
+        },
+        "nums": [
+          1,
+          -2,
+          3
+        ],
+        "recs": [
+          {
+            "k": "a",
+            "v": 0.5
+          },
+          {
+            "k": "b",
+            "v": -1e-7
+          }
+        ],
+        "optArr": {
+          "$type": "undefined"
+        }
+      },
+      "hash": "3b0e3529263302222a2f322473a9bb023326f5"
+    },
+    {
+      "name": "combined/all-types-optional-present",
+      "schema": {
+        "u": "uint",
+        "i": "int",
+        "f": "float",
+        "s": "string",
+        "b": "Buffer",
+        "bool": "boolean",
+        "j": "json",
+        "o": "oid",
+        "re": "regex",
+        "d": "date",
+        "optStr?": "string",
+        "nums": [
+          "int"
+        ],
+        "recs": [
+          {
+            "k": "string",
+            "v": "float"
+          }
+        ],
+        "optArr?": [
+          "uint"
+        ]
+      },
+      "value": {
+        "u": 12345,
+        "i": -54321,
+        "f": 3.5,
+        "s": "combo",
+        "b": {
+          "$type": "buffer",
+          "hex": "deadbeef"
+        },
+        "bool": false,
+        "j": {
+          "nested": [
+            1,
+            null,
+            "x"
+          ],
+          "z": 1e+21
+        },
+        "o": {
+          "$type": "oid",
+          "hex": "0123456789abcdefabcdef01"
+        },
+        "re": {
+          "$type": "regex",
+          "source": "x(y)?",
+          "flags": "gim"
+        },
+        "d": {
+          "$type": "date",
+          "ms": 1700000000123
+        },
+        "nums": [
+          1,
+          -2,
+          3
+        ],
+        "recs": [
+          {
+            "k": "a",
+            "v": 0.5
+          },
+          {
+            "k": "b",
+            "v": -1e-7
+          }
+        ],
+        "optStr": "opt",
+        "optArr": [
+          7,
+          8
+        ]
+      },
+      "encoded": "b039dfff2bcf400c00000000000005636f6d626f04deadbeef00217b226e6573746564223a5b312c6e756c6c2c2278225d2c227a223a31652b32317d0123456789abcdefabcdef0105782879293f07e000018bcfe5687b01036f707403017e030201613fe00000000000000162be7ad7f29abcaf4801020708",
+      "decoded": {
+        "u": 12345,
+        "i": -54321,
+        "f": 3.5,
+        "s": "combo",
+        "b": {
+          "$type": "buffer",
+          "hex": "deadbeef"
+        },
+        "bool": false,
+        "j": {
+          "nested": [
+            1,
+            null,
+            "x"
+          ],
+          "z": 1e+21
+        },
+        "o": {
+          "$type": "oid",
+          "hex": "0123456789abcdefabcdef01"
+        },
+        "re": {
+          "$type": "regex",
+          "source": "x(y)?",
+          "flags": "gim"
+        },
+        "d": {
+          "$type": "date",
+          "ms": 1700000000123
+        },
+        "optStr": "opt",
+        "nums": [
+          1,
+          -2,
+          3
+        ],
+        "recs": [
+          {
+            "k": "a",
+            "v": 0.5
+          },
+          {
+            "k": "b",
+            "v": -1e-7
+          }
+        ],
+        "optArr": [
+          7,
+          8
+        ]
+      },
+      "hash": "3b0e3529263302222a2f322473a9bb023326f5"
+    },
+    {
+      "name": "combined/all-types-optional-undefined",
+      "schema": {
+        "u": "uint",
+        "i": "int",
+        "f": "float",
+        "s": "string",
+        "b": "Buffer",
+        "bool": "boolean",
+        "j": "json",
+        "o": "oid",
+        "re": "regex",
+        "d": "date",
+        "optStr?": "string",
+        "nums": [
+          "int"
+        ],
+        "recs": [
+          {
+            "k": "string",
+            "v": "float"
+          }
+        ],
+        "optArr?": [
+          "uint"
+        ]
+      },
+      "value": {
+        "u": 12345,
+        "i": -54321,
+        "f": 3.5,
+        "s": "combo",
+        "b": {
+          "$type": "buffer",
+          "hex": "deadbeef"
+        },
+        "bool": false,
+        "j": {
+          "nested": [
+            1,
+            null,
+            "x"
+          ],
+          "z": 1e+21
+        },
+        "o": {
+          "$type": "oid",
+          "hex": "0123456789abcdefabcdef01"
+        },
+        "re": {
+          "$type": "regex",
+          "source": "x(y)?",
+          "flags": "gim"
+        },
+        "d": {
+          "$type": "date",
+          "ms": 1700000000123
+        },
+        "nums": [
+          1,
+          -2,
+          3
+        ],
+        "recs": [
+          {
+            "k": "a",
+            "v": 0.5
+          },
+          {
+            "k": "b",
+            "v": -1e-7
+          }
+        ],
+        "optStr": {
+          "$type": "undefined"
+        },
+        "optArr": {
+          "$type": "undefined"
+        }
+      },
+      "encoded": "b039dfff2bcf400c00000000000005636f6d626f04deadbeef00217b226e6573746564223a5b312c6e756c6c2c2278225d2c227a223a31652b32317d0123456789abcdefabcdef0105782879293f07e000018bcfe5687b0003017e030201613fe00000000000000162be7ad7f29abcaf4800",
+      "decoded": {
+        "u": 12345,
+        "i": -54321,
+        "f": 3.5,
+        "s": "combo",
+        "b": {
+          "$type": "buffer",
+          "hex": "deadbeef"
+        },
+        "bool": false,
+        "j": {
+          "nested": [
+            1,
+            null,
+            "x"
+          ],
+          "z": 1e+21
+        },
+        "o": {
+          "$type": "oid",
+          "hex": "0123456789abcdefabcdef01"
+        },
+        "re": {
+          "$type": "regex",
+          "source": "x(y)?",
+          "flags": "gim"
+        },
+        "d": {
+          "$type": "date",
+          "ms": 1700000000123
+        },
+        "optStr": {
+          "$type": "undefined"
+        },
+        "nums": [
+          1,
+          -2,
+          3
+        ],
+        "recs": [
+          {
+            "k": "a",
+            "v": 0.5
+          },
+          {
+            "k": "b",
+            "v": -1e-7
+          }
+        ],
+        "optArr": {
+          "$type": "undefined"
+        }
+      },
+      "hash": "3b0e3529263302222a2f322473a9bb023326f5"
+    },
+    {
+      "name": "random/uint-300",
+      "schema": [
+        "uint"
+      ],
+      "value": [
+        2842494134935146,
+        4186760080561452,
+        1953234535740222,
+        4639991327130912,
+        4929866437725010,
+        1105646172019284,
+        7707632815061670,
+        4556987930675400,
+        8018378505344314,
+        3082045122495612,
+        6833109873389326,
+        7517741792428400,
+        1360304154500130,
+        3071386101953444,
+        5628767710752886,
+        5087899518668568,
+        8583048572518410,
+        2790006705293260,
+        4799393361403614,
+        7164165067755968,
+        7750255577440498,
+        4833853780615412,
+        581358641273414,
+        7071403485260136,
+        4545300463886042,
+        4797184525917980,
+        3882918270698158,
+        702938691139088,
+        6375593328466370,
+        1405664618881604,
+        5381313139783702,
+        5660852474877880,
+        5484079368237482,
+        6649468628355692,
+        3670267954305662,
+        8338688378957408,
+        7096737600341650,
+        1873182481479572,
+        6385890983168486,
+        1076148800821768,
+        3526882174154874,
+        1952099403614652,
+        4310976175859278,
+        1299393719581360,
+        2322660285622114,
+        2374922728071396,
+        8529700331524022,
+        7610943700004952,
+        371354563146570,
+        7391265219730700,
+        6517526304286238,
+        915580378176256,
+        3039681458748466,
+        4115950051647028,
+        8303099963935110,
+        8596640790813352,
+        7285292083388954,
+        8690907295974492,
+        2558152730155502,
+        6562725790338896,
+        2782672759735554,
+        4360679358001028,
+        2759398801651542,
+        1438392749463800,
+        70642533844202,
+        5648715439685548,
+        3278438093029822,
+        4668458416838560,
+        4656655024177618,
+        5440075557344468,
+        7529254283352358,
+        6622300162091848,
+        128300330671034,
+        3128928925748988,
+        2072516530937230,
+        4741354762580976,
+        3322399773766306,
+        5744453504257572,
+        2777476299828982,
+        4665017010000280,
+        2400511932425866,
+        2055137778725452,
+        1904671310376286,
+        3342142357644352,
+        3010827859990386,
+        8730677655083892,
+        5260622439872710,
+        8171344573369320,
+        2392473872721242,
+        8417481088067996,
+        6302135840010542,
+        2098098669414544,
+        8515809806741570,
+        4907763826883780,
+        5276601864910486,
+        7791036037028408,
+        5179531880749098,
+        6251050183423212,
+        1340694892751102,
+        7703050297278688,
+        7179767971921170,
+        7865675545309716,
+        2693473267492966,
+        8247593106766984,
+        7392782237581050,
+        2671884371465276,
+        680680879461582,
+        4895776013708592,
+        4922472626879970,
+        232129187248996,
+        6949444334423606,
+        1316669184635608,
+        6226271165127114,
+        855373037455244,
+        530977575253150,
+        1496002232659328,
+        8226644654895794,
+        5730187750316212,
+        1024075264665606,
+        1854865045732648,
+        8444194483529882,
+        36256182111964,
+        6670618286360686,
+        1382806319088080,
+        6123555967949698,
+        8113467291748868,
+        4488672881440214,
+        2763733772458872,
+        3359298907417450,
+        4515823273699884,
+        7427187549048894,
+        4494615246776864,
+        6221827062560850,
+        5209332725288788,
+        1448697265387430,
+        2011377981869512,
+        7868879259132474,
+        5647515006982524,
+        698419028053006,
+        6829207074727536,
+        7685828852910370,
+        8918898089617572,
+        3594155866664310,
+        2632449557238808,
+        3404383148674314,
+        8858520530574540,
+        2959395039755230,
+        443709470766784,
+        1235683476147698,
+        181029871998452,
+        5163607768110918,
+        3720951064407656,
+        7989005280062426,
+        6628180622242844,
+        4226550010044334,
+        476198817946384,
+        5176060506048194,
+        1029940911986500,
+        958562060514582,
+        430235080694968,
+        4180093010755242,
+        5509584245170028,
+        4086467493279614,
+        109702732878688,
+        2345782169826194,
+        2537596766153876,
+        4357876217874150,
+        1987403375468296,
+        2119541537490298,
+        8115171246431932,
+        2688681185985358,
+        6600998292660144,
+        3168219070846050,
+        842512861271524,
+        2281759823695030,
+        4671708609049944,
+        3504997145755722,
+        4109532296950284,
+        745674389979934,
+        5251813673730048,
+        615292706957618,
+        6156952809526068,
+        227771113129606,
+        821753587457960,
+        1589856136048410,
+        6238206178892124,
+        8540080206640878,
+        4444825901970512,
+        6236273160548866,
+        6738132865950852,
+        4256418329277526,
+        5857089563500024,
+        8204863930274282,
+        5291683377747116,
+        888683921022654,
+        8622061746306208,
+        5121782824840914,
+        4917017336777172,
+        2976760676832806,
+        4235019903021128,
+        8722117455866042,
+        6134203503944700,
+        7214417025661582,
+        270499880311024,
+        939792409157538,
+        8091120532652836,
+        3575206414789622,
+        3493796687091352,
+        7091062895883146,
+        682156991760204,
+        3459964955724382,
+        2972465933830464,
+        6928422086837362,
+        1702908601766004,
+        4793914152695238,
+        7231021605605608,
+        7824095703134810,
+        3932882386714268,
+        2159760173289006,
+        340838663441808,
+        859944684657986,
+        3282994789855684,
+        5937992508044182,
+        6096448044719928,
+        6989362284963114,
+        8928670340303340,
+        7403986162075134,
+        8076643721946592,
+        6105579378158098,
+        8406944448636692,
+        6875500106278246,
+        4813577777332616,
+        1217959257983994,
+        4771161314175292,
+        5831377367396814,
+        1911460962619952,
+        1563499010009826,
+        8709673142628452,
+        8037445446568758,
+        4165263258908632,
+        5718331152262858,
+        3642944283876492,
+        2658017154650526,
+        7679415107572352,
+        2723623382687666,
+        892645769678260,
+        1410588049728774,
+        993706956390952,
+        233075956610458,
+        4778759048799196,
+        3662938628744558,
+        2237985824646864,
+        7624423730022530,
+        4738275741531908,
+        6566234537652950,
+        6214860260335736,
+        1096538351204458,
+        3472696023793452,
+        6180925513575742,
+        3539998664216352,
+        5860121971942738,
+        59529529558100,
+        7609845058090150,
+        8789626600166088,
+        7191614447578938,
+        85394822819452,
+        8109711540988174,
+        7583231483956080,
+        5602288747132450,
+        7764720225852836,
+        7224227739347574,
+        2745458671524120,
+        8956951311800842,
+        44045064253900,
+        7909980584990942,
+        6424812287237056,
+        6578244843502322,
+        8792714116352756,
+        8655141254550598,
+        5190757616841576,
+        6401344802863322,
+        4835186310842652,
+        4605366124887214,
+        6195617732608016,
+        71062271931330,
+        7163326000892996,
+        6704094358942230,
+        2271676557369784,
+        96541123251114,
+        2997509351830636,
+        6789651171103870,
+        78675906443360,
+        4948360614142098,
+        2955720489460116,
+        5742745473106918,
+        3215317463802888,
+        184435536810618,
+        6150653221925820,
+        5605170098315342,
+        4337962805036208
+      ],
+      "encoded": "812ce00a193bbd305e6ae00edfd60b5c952ce006f074daaa733ee0107c0c2ad08520e01183aff9cf8b52e003ed944f549a54e01b620d1c003aa6e010308e6eda88c8e01c7cac3a7c553ae00af31a8cb5447ce01846ad5eb6ef0ee01ab558a90d0170e004d5307dea5c22e00ae968cd9333a4e013ff559bec3076e012136aeb768f18e01e7e3cb941400ae009e97f0e9707cce0110d05d8719edee01973c529f9d1c0e01b88d0fe9ca0f2e0112c5d497d60f4e00210be1b4cda46e0191f676ccd6968e01025ed3b8c1edae0110b038f96df1ce00dcb7e5c3782aee0027f51aafbf610e016a6917f9359c2e004fe71cc482244e0131e469a1f3816e0141c83ece417b8e0137bbdbaa9f1aae0179fa80f89ca6ce00d0a16d9a59a7ee01d9ffe2eb86e60e0193671fbbb8692e006a7a648687794e016afef1ba049e6e003d2c06aff9a08e00c87ae3f27b87ae006ef6c8f84c9bce00f50cf5b98e64ee0049dcaad143ab0e00840727d422762e0086ffac99360e4e01e4db79e4d0fb6e01b0a1ceba4f058e00151beb8d2734ae01a425109dcdd0ce01727a7d82e661ee00340b72b345b00e00acc92fd943c32e00e9f6f4cbdde34e01d7fa01be28986e01e8a9968991aa8e019e1ef3eb7221ae01ee0558a27045ce00916a058c319eee01750c3ab7dcf50e009e2d37d5ec502e00f7e03c81cef84e009cda8995db756e0051c35e8e118f8e000403fbf22c4eae014117a0d383face00ba5b8d9f401bee01095f02d9597a0e0108b33fc8ec1d2e01353b84b2594d4e01abfd11efb9926e01786f268c1eb48e00074b03fa25bbae00b1dbe89258efce0075cf15b9e1d8ee010d83cae60b3f0e00bcdb47a5132a2e014688cce8cce24e009de1998392ef6e01092cee9c09198e0088740bd02e68ae0074d230d43f24ce006c449d8de6d5ee00bdfa928042440e00ab254fd131772e01f04814c479b74e012b0821bd378c6e01d07cb6aa20be8e0087ff13b51655ae01de7a78a28699ce01663c25811f12ee0077435a9e4e890e01e41157a817042e0116f95cf8afcc4e012bf0a9bc77696e01bade7ef6b5a38e01266c1bddad82ae016354c09a7f4ece004c35adad5a8fee01b5de228a800e0e01981f5ff893d12e01bf1ca4ccbf214e00991b31d522866e01d4d2469617c88e01a43b23f2c3efae0097e108ed7943ce0026b135e0694cee01164aeae326d30e0117cf678577de2e000d31ec9bf7b64e018b07b98f08e36e004ad80ef0972d8e0161ec2b91299cae00309f50e0c478ce001e2ebd9c1b49ee005509b29a92d80e01d3a16f85932b2e0145b934d5a98b4e003a3641a5fa806e00696fd6c283d28e01dfff33c9ae89ae00020f98cdb0edce017b2e45964086ee004e9a7af7141d0e015c1577a3b5b82e01cd327cfd24a04e00ff26c989c75d6e009d199e9c2db78e00bef43ba122b6ae0100b1e0a18ea2ce01a62fcdb8a903ee00ff7d4292faa20e0161ab7ffeaf852e01281dc4a9b8f54e00525951de3f7a6e00725566e1e4dc8e01bf4b43905623ae01410628ddad97ce0027b355a124c0ee0184320adc96670e01b4e387a950922e01fafb0c86b68a4e00cc4dd9fb32d76e0095a32ecbf9418e00c1844b8418d0ae01f78c70975dccce00a838dda183bdee001938d296376c0e00463d8faa68df2e000a4a54d36d5f4e01258461ec71746e00d382f6e6bae68e01c61f53dd3abdae0178c4b8f7ef41ce00f04065bf95faee001b119ad62db10e01263997fcc86c2e003a8b9ce32d744e00367ce9f1cb516e001874be9279cb8e00ed9c5bf08beaae01392f00bcb1f6ce00e849edb52b77ee00063c6286c9360e0085579f8f3f392e00903ee49d46c94e00f7b771ff106e6e0070f8868385f08e00787b6386dc57ae01cd4b48b6f5ebce0098d575f01434ee0177392ae659fb0e00b417a7c49d462e002fe42cfd095e4e0081b3f9bc10cb6e01098e4ec22f558e00c73c6bdcfc04ae00e99990cc0b20ce002a62fd922031ee012a87f28730000e0022f9aff3b2932e015dfb7491c5334e000cf281849c686e002eb616aac5fa8e005a5f73a3baf1ae016299d8f54195ce01e57285f11f6eee00fca8bacf9b450e01627db7e74f202e017f04bcfeca484e00f1f309e883456e014cefdeed99df8e01d2647bffe91eae012ccc20bfe94ace0032840d96e1ebee01ea1b82f9ebca0e012323bfde42ed2e01178004fb689d4e00a93591ab95626e00f0bba68efb048e01efcb838a568bae015cb068cd523fce019a1795c137a8ee000f604a94718f0e00356bc78b5dfa2e01cbed4cd2f0324e00cb3a19c5a2bf6e00c6996ee739698e0193148bcfd338ae0026c6b0d2cc74ce00c4ad1de1f0a5ee00a8f712817c940e0189d5cf9570472e0060cc94e4b1074e011080a1e27b5c6e019b0936a2a50e8e01bcbf93d12f25ae00df8ef899a7e9ce007ac4a59edce2ee00135fdaf75cd90e0030e1d79749d42e00ba9ddca3fb1c4e01518929e1ef396e015a8afec18df38e018d4c9b833a52ae01fb8940ff349ece01a4de2dd1cc5fee01cb1aa280625e0e015b0fdf9fbaa12e01dde124981e714e0186d3b1d7ce566e01119ec69844188e00453ba3cec4bfae010f3588f4c293ce014b79b5888f1cee006ca76afadd230e0058dfe7b192ae2e01ef166cdc6b064e01c8e0398be8b36e00ecc48ecf177d8e01450cab909e6cae00cf13d0ffa1c8ce0097173d84f519ee01b48632991d280e009ad1efc3a1fb2e0032bdb4a030db4e00502ec1fa0e506e00387c56e258228e000d3fb3999759ae010fa418b9223dce00d036c5bcce56ee007f36fae1726d0e01b165f7c0b8882e010d56fca6bff04e01753f49d20f2d6e0161461ea256078e003e54bbae7f86ae00c56660ce93f2ce015f584dd9ead3ee00c939c2ae2cf20e014d1bff87a6552e00036244c768454e01b091d1f7bb4a6e01f3a1e6b3612c8e0198cbc38826f3ae0004daa88146e7ce01ccfbd5ba1a90ee01af0e8aad9cb70e013e7407eb3b622e01b95f8ced79da4e019aa65982e2a76e009c0fae8dc9918e01fd24cbd35da0ae000280f0a68b1cce01c1a15def2d8dee016d3552e211bc0e0175ee0fb247af2e01f3ced49844af4e01ebfce1bf55446e01270f76fddf368e016bdfd3b0f38dae0112d938a7b091ce0105c8e5bef3caee01602e1aa1dc010e00040a17979b3c2e0197301cdb18c44e017d1569ace3216e0081213ea3f21b8e00057cdbb5b8baae00aa6380820746ce0181f26da33d47ee000478e2974b860e0119481fca06092e00a80364dd46194e01466ff1ff5c3e6e00b6c506f452408e000a7be3ea7d27ae015d9fc8c6df3bce013e9df5c9da04ee00f695aac0b04b0",
+      "decoded": [
+        2842494134935146,
+        4186760080561452,
+        1953234535740222,
+        4639991327130912,
+        4929866437725010,
+        1105646172019284,
+        7707632815061670,
+        4556987930675400,
+        8018378505344314,
+        3082045122495612,
+        6833109873389326,
+        7517741792428400,
+        1360304154500130,
+        3071386101953444,
+        5628767710752886,
+        5087899518668568,
+        8583048572518410,
+        2790006705293260,
+        4799393361403614,
+        7164165067755968,
+        7750255577440498,
+        4833853780615412,
+        581358641273414,
+        7071403485260136,
+        4545300463886042,
+        4797184525917980,
+        3882918270698158,
+        702938691139088,
+        6375593328466370,
+        1405664618881604,
+        5381313139783702,
+        5660852474877880,
+        5484079368237482,
+        6649468628355692,
+        3670267954305662,
+        8338688378957408,
+        7096737600341650,
+        1873182481479572,
+        6385890983168486,
+        1076148800821768,
+        3526882174154874,
+        1952099403614652,
+        4310976175859278,
+        1299393719581360,
+        2322660285622114,
+        2374922728071396,
+        8529700331524022,
+        7610943700004952,
+        371354563146570,
+        7391265219730700,
+        6517526304286238,
+        915580378176256,
+        3039681458748466,
+        4115950051647028,
+        8303099963935110,
+        8596640790813352,
+        7285292083388954,
+        8690907295974492,
+        2558152730155502,
+        6562725790338896,
+        2782672759735554,
+        4360679358001028,
+        2759398801651542,
+        1438392749463800,
+        70642533844202,
+        5648715439685548,
+        3278438093029822,
+        4668458416838560,
+        4656655024177618,
+        5440075557344468,
+        7529254283352358,
+        6622300162091848,
+        128300330671034,
+        3128928925748988,
+        2072516530937230,
+        4741354762580976,
+        3322399773766306,
+        5744453504257572,
+        2777476299828982,
+        4665017010000280,
+        2400511932425866,
+        2055137778725452,
+        1904671310376286,
+        3342142357644352,
+        3010827859990386,
+        8730677655083892,
+        5260622439872710,
+        8171344573369320,
+        2392473872721242,
+        8417481088067996,
+        6302135840010542,
+        2098098669414544,
+        8515809806741570,
+        4907763826883780,
+        5276601864910486,
+        7791036037028408,
+        5179531880749098,
+        6251050183423212,
+        1340694892751102,
+        7703050297278688,
+        7179767971921170,
+        7865675545309716,
+        2693473267492966,
+        8247593106766984,
+        7392782237581050,
+        2671884371465276,
+        680680879461582,
+        4895776013708592,
+        4922472626879970,
+        232129187248996,
+        6949444334423606,
+        1316669184635608,
+        6226271165127114,
+        855373037455244,
+        530977575253150,
+        1496002232659328,
+        8226644654895794,
+        5730187750316212,
+        1024075264665606,
+        1854865045732648,
+        8444194483529882,
+        36256182111964,
+        6670618286360686,
+        1382806319088080,
+        6123555967949698,
+        8113467291748868,
+        4488672881440214,
+        2763733772458872,
+        3359298907417450,
+        4515823273699884,
+        7427187549048894,
+        4494615246776864,
+        6221827062560850,
+        5209332725288788,
+        1448697265387430,
+        2011377981869512,
+        7868879259132474,
+        5647515006982524,
+        698419028053006,
+        6829207074727536,
+        7685828852910370,
+        8918898089617572,
+        3594155866664310,
+        2632449557238808,
+        3404383148674314,
+        8858520530574540,
+        2959395039755230,
+        443709470766784,
+        1235683476147698,
+        181029871998452,
+        5163607768110918,
+        3720951064407656,
+        7989005280062426,
+        6628180622242844,
+        4226550010044334,
+        476198817946384,
+        5176060506048194,
+        1029940911986500,
+        958562060514582,
+        430235080694968,
+        4180093010755242,
+        5509584245170028,
+        4086467493279614,
+        109702732878688,
+        2345782169826194,
+        2537596766153876,
+        4357876217874150,
+        1987403375468296,
+        2119541537490298,
+        8115171246431932,
+        2688681185985358,
+        6600998292660144,
+        3168219070846050,
+        842512861271524,
+        2281759823695030,
+        4671708609049944,
+        3504997145755722,
+        4109532296950284,
+        745674389979934,
+        5251813673730048,
+        615292706957618,
+        6156952809526068,
+        227771113129606,
+        821753587457960,
+        1589856136048410,
+        6238206178892124,
+        8540080206640878,
+        4444825901970512,
+        6236273160548866,
+        6738132865950852,
+        4256418329277526,
+        5857089563500024,
+        8204863930274282,
+        5291683377747116,
+        888683921022654,
+        8622061746306208,
+        5121782824840914,
+        4917017336777172,
+        2976760676832806,
+        4235019903021128,
+        8722117455866042,
+        6134203503944700,
+        7214417025661582,
+        270499880311024,
+        939792409157538,
+        8091120532652836,
+        3575206414789622,
+        3493796687091352,
+        7091062895883146,
+        682156991760204,
+        3459964955724382,
+        2972465933830464,
+        6928422086837362,
+        1702908601766004,
+        4793914152695238,
+        7231021605605608,
+        7824095703134810,
+        3932882386714268,
+        2159760173289006,
+        340838663441808,
+        859944684657986,
+        3282994789855684,
+        5937992508044182,
+        6096448044719928,
+        6989362284963114,
+        8928670340303340,
+        7403986162075134,
+        8076643721946592,
+        6105579378158098,
+        8406944448636692,
+        6875500106278246,
+        4813577777332616,
+        1217959257983994,
+        4771161314175292,
+        5831377367396814,
+        1911460962619952,
+        1563499010009826,
+        8709673142628452,
+        8037445446568758,
+        4165263258908632,
+        5718331152262858,
+        3642944283876492,
+        2658017154650526,
+        7679415107572352,
+        2723623382687666,
+        892645769678260,
+        1410588049728774,
+        993706956390952,
+        233075956610458,
+        4778759048799196,
+        3662938628744558,
+        2237985824646864,
+        7624423730022530,
+        4738275741531908,
+        6566234537652950,
+        6214860260335736,
+        1096538351204458,
+        3472696023793452,
+        6180925513575742,
+        3539998664216352,
+        5860121971942738,
+        59529529558100,
+        7609845058090150,
+        8789626600166088,
+        7191614447578938,
+        85394822819452,
+        8109711540988174,
+        7583231483956080,
+        5602288747132450,
+        7764720225852836,
+        7224227739347574,
+        2745458671524120,
+        8956951311800842,
+        44045064253900,
+        7909980584990942,
+        6424812287237056,
+        6578244843502322,
+        8792714116352756,
+        8655141254550598,
+        5190757616841576,
+        6401344802863322,
+        4835186310842652,
+        4605366124887214,
+        6195617732608016,
+        71062271931330,
+        7163326000892996,
+        6704094358942230,
+        2271676557369784,
+        96541123251114,
+        2997509351830636,
+        6789651171103870,
+        78675906443360,
+        4948360614142098,
+        2955720489460116,
+        5742745473106918,
+        3215317463802888,
+        184435536810618,
+        6150653221925820,
+        5605170098315342,
+        4337962805036208
+      ],
+      "hash": "1b35"
+    },
+    {
+      "name": "random/int-300",
+      "schema": [
+        "int"
+      ],
+      "value": [
+        -4611912239513954,
+        3674942138816755,
+        -4300932660918872,
+        1698102591495201,
+        -1764406275448862,
+        6805049337861215,
+        -3448065412220980,
+        5392126138221869,
+        -8877453606140954,
+        8067610238711307,
+        -8273084868565328,
+        2244069190292089,
+        -6914522046968150,
+        3713152806390263,
+        -3562460872763820,
+        4751943045591045,
+        -3933245044267986,
+        6434301794114595,
+        -2164399090529608,
+        5879835267369425,
+        -7887902234957710,
+        1139023240231055,
+        -3436097575401508,
+        2666623629265885,
+        -4498448802611338,
+        7121409662659387,
+        -6297148668735040,
+        4635041053712937,
+        -3236490225119942,
+        3435627079467047,
+        -4831492666594204,
+        8986692698699957,
+        -7313012794575426,
+        5703399403307859,
+        -2466719668528184,
+        5633422190672769,
+        -6747062315508478,
+        6124653454033087,
+        -8701922790595604,
+        3057824326276749,
+        -3522570034895098,
+        1871308172592235,
+        -369705105569584,
+        2945312822261209,
+        -5782931222071350,
+        3777813556779607,
+        -554725292110220,
+        4652536070669669,
+        -70536123059378,
+        7314044231896707,
+        -4952807773226792,
+        3483342336848177,
+        -690443279516270,
+        6905339002842351,
+        -7872193188443140,
+        786694990128445,
+        -5061411721037162,
+        8563689778381211,
+        -1776141579449376,
+        7862137714199945,
+        -8176677549470118,
+        4801284929001607,
+        -4410083347923836,
+        7644012879533589,
+        -4116882823471906,
+        1898397679615411,
+        -5426927129959960,
+        265224187734753,
+        -1636751353411038,
+        446427533622559,
+        -3647309017890804,
+        6399751269988333,
+        -8789518421247450,
+        1223691517731531,
+        -8853996314600720,
+        1362320958400825,
+        -4603511794020118,
+        375164403366583,
+        -8120443337296236,
+        5145215994784453,
+        -5897273544330642,
+        917768554565859,
+        -4759890663172360,
+        4133046328486033,
+        -4053243792325966,
+        4542415510991183,
+        -3794220465192932,
+        1733061026959005,
+        -5937185583159882,
+        1727196943116283,
+        -6992959164402176,
+        8769814637578473,
+        -7826564724310150,
+        5197723333673191,
+        -8475231298143068,
+        665786234684277,
+        -1427077928406018,
+        633817530648595,
+        -8889061570160632,
+        3537538341169729,
+        -2970128194885822,
+        3773751615031679,
+        -3132028875994068,
+        2962639251482957,
+        -6312056769184442,
+        7743241412759851,
+        -4663667288171248,
+        8683724067138713,
+        -4150319688197622,
+        753185960274711,
+        -7330422803034444,
+        5033714319482917,
+        -5299014672768626,
+        122954717520707,
+        -1796754080455400,
+        3254978897473521,
+        -2987761221077038,
+        3550033209263535,
+        -1546384862157764,
+        6561252803332093,
+        -2270327174414122,
+        1741211479596635,
+        -6396108997554144,
+        5035903175283785,
+        -7463807470165862,
+        7369323179571527,
+        -2601343838671676,
+        366543047147733,
+        -5647153912906978,
+        1276340331684467,
+        -8560629715403224,
+        6372796578134433,
+        -262250082765726,
+        3088407905330655,
+        -3989488972855220,
+        7312818384218797,
+        -4745540377153434,
+        5034040553934731,
+        -3772423025389776,
+        69355530829817,
+        -5197411299749078,
+        3152659653995383,
+        -6277069181151532,
+        3121762479203717,
+        -175715583868754,
+        8799883891180963,
+        -5281703532797128,
+        5282370886633297,
+        -519851455832846,
+        4420773354613263,
+        -2465692648212388,
+        7319602195190109,
+        -7219791588389898,
+        5720614597092539,
+        -2448497229456832,
+        3345434134818729,
+        -3358862454148678,
+        5053266433589671,
+        -8391625377002268,
+        1046414889111093,
+        -5166267869695426,
+        3192647390891219,
+        -149138090634168,
+        8700630147635457,
+        -1042572702256766,
+        3386577456615999,
+        -3053095983532948,
+        6995020816104461,
+        -3738125758622842,
+        3721769066192363,
+        -4139569680338608,
+        4722243924730713,
+        -8518842554057654,
+        5814366843911127,
+        -4045588775842060,
+        7220290827582181,
+        -1434531943411762,
+        3797239146199043,
+        -6418645817110184,
+        5641254085373617,
+        -8682569976942062,
+        7647217271103087,
+        -7889149622469508,
+        5063640668760765,
+        -6922936355780842,
+        1773088719895323,
+        -6620228929858464,
+        1376238867618569,
+        -789385396784422,
+        993933847599623,
+        -2413284382466812,
+        6012732788829077,
+        -6387975602300578,
+        5749419949328179,
+        -6383691186349464,
+        1443471245264993,
+        -3833352148279646,
+        657241730698911,
+        -6163455502282612,
+        7568377540074861,
+        -2937969091516762,
+        5424908289489995,
+        -3724413876862096,
+        6809421885937337,
+        -5881470725745302,
+        6979088956513335,
+        -8728387347368172,
+        7125831544315973,
+        -1968220169498898,
+        6999699894041187,
+        -5418687186374792,
+        8764859336517137,
+        -3480174910245070,
+        4714746692510415,
+        -1139363812757348,
+        848898952074269,
+        -5531517315435978,
+        5027913700974971,
+        -3359811874046336,
+        5813348046968425,
+        -5033032085707782,
+        6942906032194151,
+        -6269524994122460,
+        558429332183285,
+        -6708633592401794,
+        8313339315163539,
+        -4957396883795832,
+        2545349361076161,
+        -7156845119734846,
+        8903780765981439,
+        -1146774680986452,
+        5584819824561869,
+        -1993226620868154,
+        2754739973499563,
+        -486261903260272,
+        8512320628136473,
+        -7066550994936182,
+        4887607351184535,
+        -1396272556224716,
+        1642116130952613,
+        -3676736807387634,
+        4263148594318531,
+        -2492933960680040,
+        1072018772077937,
+        -5952920722396078,
+        5123142331856687,
+        -1567739527670596,
+        4738107900317053,
+        -7197290239095466,
+        3592771830405083,
+        -4137351265986400,
+        5327394037998025,
+        -3353060000398054,
+        7630165095545543,
+        -5534754936042172,
+        6005233788474965,
+        -3524598254569570,
+        1243887608933363,
+        -584961298205016,
+        2928696690661153,
+        -528108591019806,
+        6100777783228255,
+        -2850858771294004,
+        6603478796718125,
+        -552054658818842,
+        6336944578701579,
+        -1391619503900752,
+        3005171774729593,
+        -3840940367816790,
+        6787902709157111,
+        -8156048672155820,
+        7587274262977285,
+        -8460037529920210,
+        8465065403756323,
+        -6859691647747144,
+        5010362147013841,
+        -1112264928194190,
+        357785922919311,
+        -1504083781343012,
+        8779599120996061,
+        -7064811979302794,
+        3589743974850107,
+        -2408554001489216,
+        6603407379774761,
+        -1027124660054470,
+        5800092527723303,
+        -3797779972018844,
+        7646078877803445,
+        -3239425325224258,
+        1922144514070099,
+        -6988289464005432,
+        2523144348808833,
+        -483797367863806,
+        6251612686623679,
+        -8109114314046228,
+        7176285590757773,
+        -7269808705142778,
+        8782803988985707,
+        -4399793101301296,
+        1476605794144473
+      ],
+      "encoded": "812cffef9d7d813a7e9ee00d0e5724c118f3fff0b853148b05a8e006086a51c21c21fff9bb4826b65fe2e0182d280476545ffff3c000b5f137cce013281c330d852dffe07600c34bc3e6e01ca972e276f60bffe29bac533666b0e007f8f812f05279ffe76f4761994eaae00d3117c20589f7fff357f5f1271654e010e1ddf539b005fff206bc0652642ee016dbf6a0d0dc23fff84f7d910e8ab8e014e3add47309d1ffe3f9fea5432872e0040bef839ff88ffff3cae3309ac7dce0097947b22c0bddfff004af45147f76e0194ce2653e2b3bffe9a0c6d28091c0e010778b9786a229fff4806de5d00d3ae00c34af43a70027ffeed5c873df6c64e01fed597202f8b5ffe604da862435bee014433627724353fff73c8812659bc8e0140391508b7b81ffe8079523681d02e015c257018000bfffe115a5b73423ece00add1334c0d68dfff37c3dc05fa706e006a5f1e2e4846bfffeafc15282c8d0e00a76bf1485f5d9ffeb747466bf77cae00d6be6c3145a57fffe077af4040e74e0108774f7cc0565ffffbfd90770f34ee019fc15a0504e83ffee6772940938d8e00c6014d69e7131fffd8c0ba5963d92e018885e86516cefffe4084831664bfce002cb7eb36ee53dffee04ac404e3a96e01e6ca16735019bfff9b09bd0160be0e01bee9295a14d89ffe2f35ae7388e5ae0110ebe42a89887fff0550d749dfc84e01b28307057d615fff15fb785b99cdee006be952755fdb3ffecb83d103261e8e000f138517eeae1fffa2f6220fe8a22e0019606028f3d1ffff30acab19a400ce016bc8a351937edffe0c5fac4c13a26e00458f0e23aa2cbffe08b5656d35af0e004d70610cba939ffefa52162cc50eae0015535c4febab7ffe3267ff3763694e012478bf3a96ac5ffeb0c76013f326ee00342b4a4ae50e3ffef16e797da16f8e00eaefbd63fe891fff19998a39202b2e010234d86f4714ffff2852d34f9001ce0062835b6e2ce9dffeae8294259a5b6e00622e0604067fbffe727f0d113b600e01f2819963808e9ffe431c7e5cbbf7ae012774d44f1c0e7ffe1e3d27115bca4e0025d877003c375fffaee148702b3fee002407424c44813ffe06b7212b95808e00c915f54346a41fff572af2401a742e00d6835047c097ffff4df6fb36b8c2ce00a8681342ea94dffe99337c2787d46e01b826fe1d1512bffef6e6b57f01d10e01ed9cd10596c99fff1414e6547da0ae002ad04c59cab17ffe5f504f0c58eb4e011e222f1e9e025ffed2c9300c5218ee0006fd3a042e343fff99ddc97492518e00b9062d4ef6ff1fff562a5a1be77d2e00c9cbc846105affffa8192379ae43ce0174f6cb69fc7fdfff7ef26433ec0d6e0062f9f63b85e5bffe946c5d3419020e011e42093e2d449ffe57bb4e711a09ae01a2e5c425a7947fff6c217708eacc4e0014d5e741ec0d5ffebeff185077b1ee00488d324152273ffe1962712c27e28e016a4065443f9a1ffff117c24f97462e00af8e4001e65dffff1d394b6f0084ce019faf836192aadffef23f4c78d7066e011e26ee7008f8bfff2990051a10f30e0003f1417c73ff9ffed88fb61ba132ae00b3353c6c62b77ffe9b309f13a16d4e00b1739f7a56585ffff6030070ac0aee01f4372a16605a3ffed3c51911e6338e012c449d0450751fffe2732a6a39cf2e00fb4ab816f2a0ffff73d773193f85ce01a0123b0bdd15dffe659a347058bf6e01452de60f4e4bbfff74d1ad0679a40e00be2a79539afa9fff41121e49231bae011f3eb46bac1a7ffe22fdc7650cce4e003b7b573c0ce35ffeda54e86cff23ee00b57b225a08cd3ffff785c1515d448e01ee92d51459901fffc4bc9206df182e00c0813024e523ffff52739b26fb46ce018d9ef32f0bc0dfff2b831c6081386e00d38ede3205debfff14b1553ae3150e010c6db17ad2359ffe1bc2867aafc4ae014a822c6533bd7fff1a08ef61bcef4e019a6d0f5f3fae5fffae74d01180fcee00d7d91a26fb803ffe932469021d158e0140ab0d1d8aeb1ffe1273fa4c97212e01b2b1a84f6de6fffe3f8dc372c3c7ce011fd5ab754eabdffe767a045b60716e0064c9d634dfb1bffe87aefd64dd460e004e3ae94d49b09fffd320ee3d572dae00387fa41ea9a07fff76d2171a41d04e0155c8c7201eb95ffe94e2b8764195ee0146d1125be8733ffe95211127b5a68e00520d456d14861fff2619626e71ea2e00255c203e3ce9fffea1a5eb032908ce01ae36636cd5d6dfff58feec3f066a6e01345ece388bc4bfff2c4aa51df8370e018312214a316b9ffeb1ad562a2956ae018cb71c61bdc37ffe0fd93f4b2b714e01950e7f1eda045fff901ea07f50eeee018de30a1b7fa63ffecbfbb931b6f78e01f2397d7426611fff3a2cca2b7f732e010c00981d022cffffbf3c130abb09ce0030411b07d141dffec591d43583236e011dcdc621ba17bfff41044d6bc3e80e014a735914b9669ffee1e7be66363fae018aa8947c20267ffe9b9e675d09d24e001fbe375fa18f5ffe82a8885cbf07ee01d88f024c71193ffee634617bb1088e0090afb547f07c1ffe692e324ecfbc2e01fa1f101b6dafffffbed03b6809cace013d75d31c70ecdfff8eb2bc34e69c6e009c96be191aaabfffe45bf53fd0590e01e3de917411a19ffe6e5026228de8ae0115d40c3f80c97fffb0a18f646cf34e005d57ef4aa55a5fff2f00700a9be0ee00f254fa196ccc3fff724b094d33d98e003cefed21a2d71ffead9d9a2f72c52e012337886d2f72ffffa6e26325a54bce010d548b64e4d7dffe66e1a47f40d56e00cc39b60b5d7dbfff14d19d77ad8a0e012ed3c9536a1c9fff41668e1c4051ae01b1b984018fac7ffec562b721e4d44e01555ba72c15655fff37a65850f779ee0046b4f27122bf3fffdebfb159cf6a8e00a67a255e6d721fffe1fb0230788e2e015aca0049f775ffff5df28b7a1d8cce01775d437f5d02dfffe09e8c22a1ce6e016836ae293290bfffb0e5455ceb7b0e00aad30141f2d79fff25aaf61c5d7aae0181d8fc1bfccf7ffe3061df0201754e01af495f3421b05ffe1f1a4043e1d2ee01e12eea0642f23ffe7a12594113bb8e011cce5d7f804d1fffc0c66a40f1172e001456786d75b8ffffaa80b348028dce01f30ffb6e096ddffe6e69747919876e00cc0da66749e3bfff7716ed251a2c0e01775c3972dbd29fffc59d5e77f563ae0149b2746c78327fff281f071d52d64e01b2a11776fa3b5fff47dc28436aebee006d42e24f7d653ffe72c3010e90cc8e008f6c952a0b681fffe47fd25bec602e01635cf0175a3bfffe330cdb1de44ece0197ecb3171a18dffe62c25c28b8006e01f33e9e7e5376bfff05e69571c99d0e0053ef713d550d9",
+      "decoded": [
+        -4611912239513954,
+        3674942138816755,
+        -4300932660918872,
+        1698102591495201,
+        -1764406275448862,
+        6805049337861215,
+        -3448065412220980,
+        5392126138221869,
+        -8877453606140954,
+        8067610238711307,
+        -8273084868565328,
+        2244069190292089,
+        -6914522046968150,
+        3713152806390263,
+        -3562460872763820,
+        4751943045591045,
+        -3933245044267986,
+        6434301794114595,
+        -2164399090529608,
+        5879835267369425,
+        -7887902234957710,
+        1139023240231055,
+        -3436097575401508,
+        2666623629265885,
+        -4498448802611338,
+        7121409662659387,
+        -6297148668735040,
+        4635041053712937,
+        -3236490225119942,
+        3435627079467047,
+        -4831492666594204,
+        8986692698699957,
+        -7313012794575426,
+        5703399403307859,
+        -2466719668528184,
+        5633422190672769,
+        -6747062315508478,
+        6124653454033087,
+        -8701922790595604,
+        3057824326276749,
+        -3522570034895098,
+        1871308172592235,
+        -369705105569584,
+        2945312822261209,
+        -5782931222071350,
+        3777813556779607,
+        -554725292110220,
+        4652536070669669,
+        -70536123059378,
+        7314044231896707,
+        -4952807773226792,
+        3483342336848177,
+        -690443279516270,
+        6905339002842351,
+        -7872193188443140,
+        786694990128445,
+        -5061411721037162,
+        8563689778381211,
+        -1776141579449376,
+        7862137714199945,
+        -8176677549470118,
+        4801284929001607,
+        -4410083347923836,
+        7644012879533589,
+        -4116882823471906,
+        1898397679615411,
+        -5426927129959960,
+        265224187734753,
+        -1636751353411038,
+        446427533622559,
+        -3647309017890804,
+        6399751269988333,
+        -8789518421247450,
+        1223691517731531,
+        -8853996314600720,
+        1362320958400825,
+        -4603511794020118,
+        375164403366583,
+        -8120443337296236,
+        5145215994784453,
+        -5897273544330642,
+        917768554565859,
+        -4759890663172360,
+        4133046328486033,
+        -4053243792325966,
+        4542415510991183,
+        -3794220465192932,
+        1733061026959005,
+        -5937185583159882,
+        1727196943116283,
+        -6992959164402176,
+        8769814637578473,
+        -7826564724310150,
+        5197723333673191,
+        -8475231298143068,
+        665786234684277,
+        -1427077928406018,
+        633817530648595,
+        -8889061570160632,
+        3537538341169729,
+        -2970128194885822,
+        3773751615031679,
+        -3132028875994068,
+        2962639251482957,
+        -6312056769184442,
+        7743241412759851,
+        -4663667288171248,
+        8683724067138713,
+        -4150319688197622,
+        753185960274711,
+        -7330422803034444,
+        5033714319482917,
+        -5299014672768626,
+        122954717520707,
+        -1796754080455400,
+        3254978897473521,
+        -2987761221077038,
+        3550033209263535,
+        -1546384862157764,
+        6561252803332093,
+        -2270327174414122,
+        1741211479596635,
+        -6396108997554144,
+        5035903175283785,
+        -7463807470165862,
+        7369323179571527,
+        -2601343838671676,
+        366543047147733,
+        -5647153912906978,
+        1276340331684467,
+        -8560629715403224,
+        6372796578134433,
+        -262250082765726,
+        3088407905330655,
+        -3989488972855220,
+        7312818384218797,
+        -4745540377153434,
+        5034040553934731,
+        -3772423025389776,
+        69355530829817,
+        -5197411299749078,
+        3152659653995383,
+        -6277069181151532,
+        3121762479203717,
+        -175715583868754,
+        8799883891180963,
+        -5281703532797128,
+        5282370886633297,
+        -519851455832846,
+        4420773354613263,
+        -2465692648212388,
+        7319602195190109,
+        -7219791588389898,
+        5720614597092539,
+        -2448497229456832,
+        3345434134818729,
+        -3358862454148678,
+        5053266433589671,
+        -8391625377002268,
+        1046414889111093,
+        -5166267869695426,
+        3192647390891219,
+        -149138090634168,
+        8700630147635457,
+        -1042572702256766,
+        3386577456615999,
+        -3053095983532948,
+        6995020816104461,
+        -3738125758622842,
+        3721769066192363,
+        -4139569680338608,
+        4722243924730713,
+        -8518842554057654,
+        5814366843911127,
+        -4045588775842060,
+        7220290827582181,
+        -1434531943411762,
+        3797239146199043,
+        -6418645817110184,
+        5641254085373617,
+        -8682569976942062,
+        7647217271103087,
+        -7889149622469508,
+        5063640668760765,
+        -6922936355780842,
+        1773088719895323,
+        -6620228929858464,
+        1376238867618569,
+        -789385396784422,
+        993933847599623,
+        -2413284382466812,
+        6012732788829077,
+        -6387975602300578,
+        5749419949328179,
+        -6383691186349464,
+        1443471245264993,
+        -3833352148279646,
+        657241730698911,
+        -6163455502282612,
+        7568377540074861,
+        -2937969091516762,
+        5424908289489995,
+        -3724413876862096,
+        6809421885937337,
+        -5881470725745302,
+        6979088956513335,
+        -8728387347368172,
+        7125831544315973,
+        -1968220169498898,
+        6999699894041187,
+        -5418687186374792,
+        8764859336517137,
+        -3480174910245070,
+        4714746692510415,
+        -1139363812757348,
+        848898952074269,
+        -5531517315435978,
+        5027913700974971,
+        -3359811874046336,
+        5813348046968425,
+        -5033032085707782,
+        6942906032194151,
+        -6269524994122460,
+        558429332183285,
+        -6708633592401794,
+        8313339315163539,
+        -4957396883795832,
+        2545349361076161,
+        -7156845119734846,
+        8903780765981439,
+        -1146774680986452,
+        5584819824561869,
+        -1993226620868154,
+        2754739973499563,
+        -486261903260272,
+        8512320628136473,
+        -7066550994936182,
+        4887607351184535,
+        -1396272556224716,
+        1642116130952613,
+        -3676736807387634,
+        4263148594318531,
+        -2492933960680040,
+        1072018772077937,
+        -5952920722396078,
+        5123142331856687,
+        -1567739527670596,
+        4738107900317053,
+        -7197290239095466,
+        3592771830405083,
+        -4137351265986400,
+        5327394037998025,
+        -3353060000398054,
+        7630165095545543,
+        -5534754936042172,
+        6005233788474965,
+        -3524598254569570,
+        1243887608933363,
+        -584961298205016,
+        2928696690661153,
+        -528108591019806,
+        6100777783228255,
+        -2850858771294004,
+        6603478796718125,
+        -552054658818842,
+        6336944578701579,
+        -1391619503900752,
+        3005171774729593,
+        -3840940367816790,
+        6787902709157111,
+        -8156048672155820,
+        7587274262977285,
+        -8460037529920210,
+        8465065403756323,
+        -6859691647747144,
+        5010362147013841,
+        -1112264928194190,
+        357785922919311,
+        -1504083781343012,
+        8779599120996061,
+        -7064811979302794,
+        3589743974850107,
+        -2408554001489216,
+        6603407379774761,
+        -1027124660054470,
+        5800092527723303,
+        -3797779972018844,
+        7646078877803445,
+        -3239425325224258,
+        1922144514070099,
+        -6988289464005432,
+        2523144348808833,
+        -483797367863806,
+        6251612686623679,
+        -8109114314046228,
+        7176285590757773,
+        -7269808705142778,
+        8782803988985707,
+        -4399793101301296,
+        1476605794144473
+      ],
+      "hash": "1b29"
+    },
+    {
+      "name": "random/float-200",
+      "schema": [
+        "float"
+      ],
+      "value": [
+        -8.085708147846163e+129,
+        4269274079706.52,
+        -2.049780217930675e+75,
+        9.015646215993911e-151,
+        -7.510654744692147e-218,
+        5.018330521415919e+243,
+        -39212.931133806705,
+        2.59581338847056e-202,
+        -872930135112255.8,
+        2.840166052337736e-298,
+        -3.929874310269952e+152,
+        3.292837284971029e-147,
+        -5.382039630785585e-7,
+        7.448723677080124e+270,
+        -3.865873292088509e-157,
+        2.257218679878861e+275,
+        -2.612710385583341e-264,
+        1.7049572034738957e+42,
+        -3.2719054725021125e-280,
+        4.027863193769008e-224,
+        -6.316896756179631e-122,
+        5.734873234760017e-271,
+        -5.218609031289816e-51,
+        3.057349848095328e+271,
+        -1.6560821933671832e-177,
+        1.291713786777109e+247,
+        -3.457354875281453e+149,
+        4.0321524487808347e-13,
+        -3.965671570040286e+199,
+        1.8310295301489532e-207,
+        -57.93659724295139,
+        2.3040033713914453e+175,
+        -6.430076411925256e-66,
+        6.267393657471986e+198,
+        -1.025052322074771e-151,
+        4.85883102985099e+79,
+        -7.025463921017944e-101,
+        6.881506375502795e+53,
+        -9.287142772227527e+143,
+        1.5292188921011983e-104,
+        -9.800841240212321e-139,
+        4.346440022345632e+266,
+        -8.151644999161362e-103,
+        2.681938179302961e+271,
+        -2.3459251457825303e+269,
+        5.3417748096399e+211,
+        -9.320102334022522e+182,
+        8.891622966621072e-153,
+        -7.754466077312827e-146,
+        7.243751897476614e-205,
+        -3.257066225633025e+170,
+        2.221898112911731e+57,
+        -2.0971411513164637e-103,
+        4.7245568479411304e+277,
+        -1.6064780764281752e-157,
+        2.2037728154100477e-76,
+        -3.78367408644408e-257,
+        8.136394319590182e+105,
+        -9.735004203394055e+52,
+        5.730049789417535e+255,
+        -8.906351164914667e+58,
+        9.709192323498427e-13,
+        -4.2460739240050315e+298,
+        2.5845000729896127e+58,
+        -4.669664478860795e-35,
+        2.5409591733478006e+258,
+        -2.80837076716125e-264,
+        8.245534566231072e+51,
+        -4.119666484184563e+151,
+        9.446367181371898e+237,
+        -6.142526809126139e-282,
+        8.73625453794375e-125,
+        -2.1199221489951014e-17,
+        4.4283918640576304e+185,
+        -4.5097701344639066e-38,
+        2.5802344013936817e-133,
+        -9.188789227046073e-117,
+        15.619381400756538,
+        -3.546275421977043e+138,
+        1.8474479229189455e-288,
+        -9.29177665617317e-163,
+        5.754468606319279e+232,
+        -6.786967655643821e+24,
+        6.243426699656992e+111,
+        -1.8273108173161745e+91,
+        7.020295530091971e+126,
+        -4.722528960555792e+109,
+        1.119797604624182e+190,
+        -7.387601505033671e+122,
+        2.499013466294855e+240,
+        -273335856385529060,
+        5.718169664032757e+217,
+        -5.4245320567861195e+267,
+        1.6868224996142092e-10,
+        -2.7442358806729315e+121,
+        9.920670373830945e+88,
+        -2.35403289552778e+298,
+        2.8494921117089687e+72,
+        -5.943436725065112e+62,
+        1.799288105685264e-278,
+        -6.252979231067002e-101,
+        1.0857156733982265e+166,
+        -6.410052645951509e+157,
+        2.560426185373217e-181,
+        -4.7061884729191665e+141,
+        1.0096055618487299e+63,
+        -7.993263388052583e-180,
+        8.225763060618191e-228,
+        -9.09325503744185e-289,
+        9.521078902762383e-145,
+        -9.287312477827072e+118,
+        1.694761908147484e+113,
+        -2.476886077784002e+128,
+        6.632883937563747e+258,
+        -4.045935934409499e-158,
+        5.4320485633797946e-135,
+        -1.5490083443000912e-103,
+        4.823017015587539e-26,
+        -6.8799941055476675e+53,
+        6.35205507511273e+164,
+        -7.290862496010959e-140,
+        9.88128021126613e+163,
+        -6.582056628540157e-281,
+        2.1196788852103053e-253,
+        -4.378368542529643e+68,
+        8.718729566317051e-238,
+        -1.9216905161738397e+166,
+        5.8570763329043985e+215,
+        -3.56399220880121e+266,
+        2.1087639569304883e-45,
+        -7.255201367661358e+49,
+        0.657575958641246,
+        -2.9163689585402604e+133,
+        2.828604585956782e+254,
+        -7.793577704578638e+294,
+        2.751489693764597e-82,
+        -8.27506142668426e+277,
+        2.169915100093931e-199,
+        -6.872388431802392e-76,
+        3.7628112663514915e+245,
+        -4.381313272751868e-207,
+        2.873123320750892e-236,
+        -6.738342344760895e-72,
+        5.409883281681687e-212,
+        -9.17721041943878e-131,
+        8.353517667856067e-143,
+        -3.4995472338050603e+193,
+        3.0336133134551346e+202,
+        -9.202564735896885e+247,
+        2.9898990388028323e+232,
+        -6.173355933278799e+32,
+        5.853426086250692e-135,
+        -7.847705106250942e+94,
+        5941153538879.007,
+        -8.691987069323658e-20,
+        6.471047655213624e+244,
+        -3657264919020.2354,
+        4.4628806668333706e-266,
+        -3.193232752382755e+146,
+        7.2590552107431e+179,
+        -6.911602965556085e+45,
+        3.907961933873594e-290,
+        -1.8498658668249846e-293,
+        7.852942508179695e-256,
+        -5.63205246347934e+250,
+        8.360336653422564e-12,
+        -3.7782094068825246e+231,
+        4.6545092249289156e-262,
+        -2.103748205117881e-126,
+        6.145404463168234e-290,
+        -2.698658937588334e-185,
+        2.2419161279685794e-95,
+        -3.5097818309441207e-292,
+        2.5850036623887717e-155,
+        -1.9190818071365357e+112,
+        6.375380402896553e+266,
+        -2.770435228012502e-49,
+        1.0665162815712391e+48,
+        -1.8946277257055044e+30,
+        6.200220559258014e+84,
+        -818124205339.7,
+        9.034369334112852e-89,
+        -6.47834686562419e-43,
+        8.983041497413069e+147,
+        -2.9436273826286195e-48,
+        6.492842433508486e-177,
+        -9.755288558080793e+70,
+        8.629585385788233e-204,
+        -8.181875483132898e-22,
+        8.971766035538167e-271,
+        -8.754907511174678e-224,
+        9026406465563.924,
+        -5.540175712667406e+142,
+        2.923860305454582e-293,
+        -3.114881394430995e+129,
+        2.2360614803619683e+143,
+        -7.95349654275924e+74,
+        4.0224646101705734e-230,
+        -3.630305174738169e+136,
+        8.2645657309331e+29
+      ],
+      "encoded": "80c8dae75469e3fd6082428f1024850ed429cf922089b7ad1db420c79c00ad1ba3f492da834314474ccd728784c7891147e9c0e3259dcbd92000161458b6c7f5d961c308cf6714efd1fe0227c686557b218ddf9e0387bb0eec4121850d5f0ee43d63bea20f2307f23cc9782c32fa54e385b49f753b12745ca518791a1404cbcc68c389350fb89baf649a48b3926b3d34f80985e7c1b934107bd7118dd175c687f4dda6c4e10d73ef5b4d07d363dd3110120fb57f3d7ebce7e3fc784cefa003a456549b3ad7f05820b85b733d8f1b0ced3855defb09e968702b593d5c5fae1b72d66ee960942380b6c5d51502cfbb69de2e5fc04cf7e26b200000645749e98b29e942b265ab58344f8d286934f5fd338438fca095797b5b3e36e6507a39de910bb6b4ab23ab4757a5212a4b1cbd0f17cfc9f3ddd30a357da148742a61894b6b6fc4c6a34757bc18bfb9c0774af590354003b6aabd36508a3ea8687849620b25f6c61bf7dc6b6b1d0e9f196be44f76c5d71c45e5ec136c8638b128205dcde629414ec2a1cefc4fb6d1bf8a158d1203f88c54f6e355936e8688ae244bd6a76cb7662b57aa9e0faa1e4e42107995526553b024cc9f61a52105453e7830398498196729c98ab22e09dd02b96b55ec6177393b2095caf04319a0cee87675086c79d3220c07cc2c6094e5c9132c3d7114a1a986c23efdf03b32e06872bf4c10782997885e9cb8cf0905bc874d0c75952749145771758936a37eeaede6524ab609d2dd9b3651df692baeecd70063715735f0689fac27858c8b3ba4a0842b262d919bdb159d66bc7870e7e3705b95667a0e0b1fb0558cb82eb120b18619a12467715360f553c5a7d72beffdba4679402f3d1f8f180000dcb30f0a509bbb9a0432010387eea06b9e4ac0fccc4a7c8e7042885ea583dc3bc51674c903ef21265724c4da1ea749c2d2e1f0dd754fd0585a44bde8fc48b3c9d6b41bbc150e172d67641b36c388e8fed971e1776efe1eb771d7fc5589d73e4cc38e58ac1b01e4a76d24bbfd83ef1aa1f7850764996e85203de72efaa2da1b51d925412e35ea2d7c5268ef671b3deb79fde1ff4d8fd949374ef9cdd896342f8dccf71dc68e2c5ff1064469b9eb0e665bab21819fefde027062679135c49b9b0de0b2acd5eeb895281a70ffce8a6a105bdd58b31e43aa3ebb4d03a23b902eb0b69ac095869f8be5c110c8f152af4b9a088421b92bd632ada72207c726834b40d9d8a26a21bc40637657719e2480bf8ca2da96de7927f402ba75ab9bfe0a894bab9f41c69449847bc1240f95f611ffd0c7aa96343cd2b457943aadda6021f951c5cb1cbb7132bbbf4062260fa267eb149da30bc893277985c161fb746278b9bdf585c31dd0936e01070b78dd68f3336ea6ce303d826f529b8b0eb6b5a955576c17e274db516927a0cc6cbb2f4625ab091af7461b2426bf82d836a813ec88178281ca48d23067d40cfe3fe50adcbca00000dba48b229c9e311474c34a65343019c8fd2867db533a7ac42f00b42fcebc506bf9a2ac30b05e3be216b09c10791839a1b053e4eaa48b3a8572eb8dd85771cbad951681936850d9b80f0762e238bbe1c9b127cfad79e7bcbd14123659660c8cf9a4f048f84e643f6522704c69bec4bf63e81eae6db300b2a669f8c513ec5b5132f36a52cc207372d8703342257cd1bcbac6be6fdee23d5fc32411049acbbc8a26d3a2cfa3c5772d9742959d21628cfc07bbf9a77ad0900a9c72c2f44e05c527d3c28a9c2fcf8f61e208d70649e33ac458de59928d58433d6e654664596301828ac9735ed4f9a5402303d85fbbff518bd18327a1087fb048d40af7951abc81674bf3ff771653f2c4a23da262737d3b4233f0037803bdf1c60a09ad502011bae72ea5d6c8ffb769695303e32a192f539221999d5aef9dff9cd92c47f18a74cd3c32836c05154c267bb71fd62e9194575f3cd73feb5f8e42c4357753c59fc7ba3b14b5d9e9dfda70372b49e75a07cf83c23ac637e9df529d0f15518988652ea0cc07c267cf8015a376662da701113b81fa90b72ce4f6e906e50d5ea67b22730e0206b611355df59f51c71b5a4f89a61e9ce5ceac44e01151c2f315c5a51cbf39e15abb8ee906405bfb4207de5594eb07dbda91a033fee6267e1242a06b3f808037d9dd922c46d98344e90332ac7d4459b968dad1f98a94983e545db2563eb8325495cf7c226e64bbe613104f3988ea5dd440dc48f926f9ae0fe94624dcd9b57144e9",
+      "decoded": [
+        -8.085708147846163e+129,
+        4269274079706.52,
+        -2.049780217930675e+75,
+        9.015646215993911e-151,
+        -7.510654744692147e-218,
+        5.018330521415919e+243,
+        -39212.931133806705,
+        2.59581338847056e-202,
+        -872930135112255.8,
+        2.840166052337736e-298,
+        -3.929874310269952e+152,
+        3.292837284971029e-147,
+        -5.382039630785585e-7,
+        7.448723677080124e+270,
+        -3.865873292088509e-157,
+        2.257218679878861e+275,
+        -2.612710385583341e-264,
+        1.7049572034738957e+42,
+        -3.2719054725021125e-280,
+        4.027863193769008e-224,
+        -6.316896756179631e-122,
+        5.734873234760017e-271,
+        -5.218609031289816e-51,
+        3.057349848095328e+271,
+        -1.6560821933671832e-177,
+        1.291713786777109e+247,
+        -3.457354875281453e+149,
+        4.0321524487808347e-13,
+        -3.965671570040286e+199,
+        1.8310295301489532e-207,
+        -57.93659724295139,
+        2.3040033713914453e+175,
+        -6.430076411925256e-66,
+        6.267393657471986e+198,
+        -1.025052322074771e-151,
+        4.85883102985099e+79,
+        -7.025463921017944e-101,
+        6.881506375502795e+53,
+        -9.287142772227527e+143,
+        1.5292188921011983e-104,
+        -9.800841240212321e-139,
+        4.346440022345632e+266,
+        -8.151644999161362e-103,
+        2.681938179302961e+271,
+        -2.3459251457825303e+269,
+        5.3417748096399e+211,
+        -9.320102334022522e+182,
+        8.891622966621072e-153,
+        -7.754466077312827e-146,
+        7.243751897476614e-205,
+        -3.257066225633025e+170,
+        2.221898112911731e+57,
+        -2.0971411513164637e-103,
+        4.7245568479411304e+277,
+        -1.6064780764281752e-157,
+        2.2037728154100477e-76,
+        -3.78367408644408e-257,
+        8.136394319590182e+105,
+        -9.735004203394055e+52,
+        5.730049789417535e+255,
+        -8.906351164914667e+58,
+        9.709192323498427e-13,
+        -4.2460739240050315e+298,
+        2.5845000729896127e+58,
+        -4.669664478860795e-35,
+        2.5409591733478006e+258,
+        -2.80837076716125e-264,
+        8.245534566231072e+51,
+        -4.119666484184563e+151,
+        9.446367181371898e+237,
+        -6.142526809126139e-282,
+        8.73625453794375e-125,
+        -2.1199221489951014e-17,
+        4.4283918640576304e+185,
+        -4.5097701344639066e-38,
+        2.5802344013936817e-133,
+        -9.188789227046073e-117,
+        15.619381400756538,
+        -3.546275421977043e+138,
+        1.8474479229189455e-288,
+        -9.29177665617317e-163,
+        5.754468606319279e+232,
+        -6.786967655643821e+24,
+        6.243426699656992e+111,
+        -1.8273108173161745e+91,
+        7.020295530091971e+126,
+        -4.722528960555792e+109,
+        1.119797604624182e+190,
+        -7.387601505033671e+122,
+        2.499013466294855e+240,
+        -273335856385529060,
+        5.718169664032757e+217,
+        -5.4245320567861195e+267,
+        1.6868224996142092e-10,
+        -2.7442358806729315e+121,
+        9.920670373830945e+88,
+        -2.35403289552778e+298,
+        2.8494921117089687e+72,
+        -5.943436725065112e+62,
+        1.799288105685264e-278,
+        -6.252979231067002e-101,
+        1.0857156733982265e+166,
+        -6.410052645951509e+157,
+        2.560426185373217e-181,
+        -4.7061884729191665e+141,
+        1.0096055618487299e+63,
+        -7.993263388052583e-180,
+        8.225763060618191e-228,
+        -9.09325503744185e-289,
+        9.521078902762383e-145,
+        -9.287312477827072e+118,
+        1.694761908147484e+113,
+        -2.476886077784002e+128,
+        6.632883937563747e+258,
+        -4.045935934409499e-158,
+        5.4320485633797946e-135,
+        -1.5490083443000912e-103,
+        4.823017015587539e-26,
+        -6.8799941055476675e+53,
+        6.35205507511273e+164,
+        -7.290862496010959e-140,
+        9.88128021126613e+163,
+        -6.582056628540157e-281,
+        2.1196788852103053e-253,
+        -4.378368542529643e+68,
+        8.718729566317051e-238,
+        -1.9216905161738397e+166,
+        5.8570763329043985e+215,
+        -3.56399220880121e+266,
+        2.1087639569304883e-45,
+        -7.255201367661358e+49,
+        0.657575958641246,
+        -2.9163689585402604e+133,
+        2.828604585956782e+254,
+        -7.793577704578638e+294,
+        2.751489693764597e-82,
+        -8.27506142668426e+277,
+        2.169915100093931e-199,
+        -6.872388431802392e-76,
+        3.7628112663514915e+245,
+        -4.381313272751868e-207,
+        2.873123320750892e-236,
+        -6.738342344760895e-72,
+        5.409883281681687e-212,
+        -9.17721041943878e-131,
+        8.353517667856067e-143,
+        -3.4995472338050603e+193,
+        3.0336133134551346e+202,
+        -9.202564735896885e+247,
+        2.9898990388028323e+232,
+        -6.173355933278799e+32,
+        5.853426086250692e-135,
+        -7.847705106250942e+94,
+        5941153538879.007,
+        -8.691987069323658e-20,
+        6.471047655213624e+244,
+        -3657264919020.2354,
+        4.4628806668333706e-266,
+        -3.193232752382755e+146,
+        7.2590552107431e+179,
+        -6.911602965556085e+45,
+        3.907961933873594e-290,
+        -1.8498658668249846e-293,
+        7.852942508179695e-256,
+        -5.63205246347934e+250,
+        8.360336653422564e-12,
+        -3.7782094068825246e+231,
+        4.6545092249289156e-262,
+        -2.103748205117881e-126,
+        6.145404463168234e-290,
+        -2.698658937588334e-185,
+        2.2419161279685794e-95,
+        -3.5097818309441207e-292,
+        2.5850036623887717e-155,
+        -1.9190818071365357e+112,
+        6.375380402896553e+266,
+        -2.770435228012502e-49,
+        1.0665162815712391e+48,
+        -1.8946277257055044e+30,
+        6.200220559258014e+84,
+        -818124205339.7,
+        9.034369334112852e-89,
+        -6.47834686562419e-43,
+        8.983041497413069e+147,
+        -2.9436273826286195e-48,
+        6.492842433508486e-177,
+        -9.755288558080793e+70,
+        8.629585385788233e-204,
+        -8.181875483132898e-22,
+        8.971766035538167e-271,
+        -8.754907511174678e-224,
+        9026406465563.924,
+        -5.540175712667406e+142,
+        2.923860305454582e-293,
+        -3.114881394430995e+129,
+        2.2360614803619683e+143,
+        -7.95349654275924e+74,
+        4.0224646101705734e-230,
+        -3.630305174738169e+136,
+        8.2645657309331e+29
+      ],
+      "hash": "1b26"
+    },
+    {
+      "name": "random/string-100",
+      "schema": [
+        "string"
+      ],
+      "value": [
+        "QTalkvORwraJ",
+        "5et?5",
+        "lQXm3U",
+        "e.wPCVM!adwnKJ6",
+        "O",
+        "EDSpk9yRQv,Z",
+        "rCdUP",
+        "hQDWlIzC7oLaJ PWJc5",
+        "3UbuJMHSFEzGR fm",
+        "ALG.E!itoH",
+        "J",
+        "bq-",
+        "vKlUz",
+        "h2HmloDu7s5Gd 1",
+        "7greFA",
+        "ydg9uBEraBczmVA1O7c",
+        "q3?HyhgnutYn4J2DWBUj",
+        "-UbmpYXCp6r",
+        "",
+        "YXixATmh HGts1Wp T",
+        "tYLKRUPatYru.wr8.g",
+        "W",
+        "wvuhALe.Yj4VQ9eZcvCx",
+        "z,dQbCFwz4V",
+        "",
+        "47M1KV?ruhE5GRYr",
+        "JAPK.2jWZQ1S7?n0x",
+        "rmVoPO.2H8VQz4N2ziZY",
+        "KR?P,hYriRYn8FwXSd",
+        "vONAja7",
+        "5KpAX4Vc9CpwPKZ?",
+        "ed",
+        "rONk",
+        "47 1iB",
+        "zyB 9KZ?vmVwvqdsX8",
+        "6rK.sbWd PKtIvK7c1y",
+        "Q5",
+        "BYH4JUPiJ2nip?bu3",
+        "zWZEDatErm7If4FUr0",
+        "MLu",
+        "AnS3MDedMT",
+        ".ob0hQLC3g!K7Er",
+        "3 5a",
+        "2r",
+        "hw98tgP,dYLy",
+        "cvS-gXS7ETGp",
+        "1yVE",
+        "eVon4Jov,.cny7UjaFAr",
+        "NE!CFAf0",
+        "I",
+        "0VAjilMnO",
+        "UjStwnuJcXyNkP",
+        "Rcn,ZozOFI",
+        "8x?D8twH8t?jy",
+        "gDOR6zipo",
+        "SJY!qhg1",
+        "NAHS3EfuBU!,xs",
+        "e.cLmdo1CRwr,-UP0x",
+        "zO-gXi.EfyVI9",
+        "xsn",
+        "3EXO-oDCVI5ado",
+        "aZADSZ",
+        "fOt",
+        "Ty.2TSxAneN",
+        "ve3EbGJE9e.c",
+        "atoDyBgX",
+        ".ovah6XqR69uV",
+        "rSdwDa-MDKtwHS",
+        "21GtsvalEL4t",
+        "5Klk1mNsrq-M5CdMv8",
+        "",
+        "TuhQvqFQj",
+        "Rs9y3Y9SZsH,ho",
+        "S.IvaRUvylc1m3Aj8BsL",
+        "F6r0",
+        "YvqlYfWx",
+        "f8",
+        "k!uF nSR6!qx?zG.",
+        "5,Jojux?",
+        "mJ",
+        "5,",
+        "sn",
+        "BMvOJEDeJEz",
+        "d2X0dQnSF",
+        "HS-IHKtc",
+        "C3 TaxkjudYDWR2fW",
+        "sDWl",
+        "P",
+        "NIvq",
+        " 1mZcfuV",
+        "5CR",
+        "jm",
+        " Tm",
+        "A9GJ2PSFkrSV",
+        "1KBAzWpYLCZ?T4.Av0d2",
+        "KlM9ixwTeF?j,",
+        "wTOpYXiF6jiZw!,3?Ti.",
+        "zSpYb03wTKlMz8xMLShs",
+        "KJA98VsjeV juVgr",
+        "ZE"
+      ],
+      "encoded": "640c5154616c6b764f527772614a053565743f35066c51586d33550f652e775043564d216164776e4b4a36014f0c454453706b39795251762c5a05724364555013685144576c497a43376f4c614a2050574a633510335562754a4d485346457a475220666d0a414c472e452169746f48014a0362712d05764b6c557a0f6832486d6c6f447537733547642031063767726546411379646739754245726142637a6d5641314f37631471333f487968676e7574596e344a32445742556a0b2d55626d7059584370367200125958697841546d68204847747331577020541274594c4b52555061745972752e7772382e6701571477767568414c652e596a34565139655a637643780b7a2c6451624346777a3456001034374d314b563f727568453547525972114a41504b2e326a575a513153373f6e307814726d566f504f2e32483856517a344e327a695a59124b523f502c6859726952596e38467758536407764f4e416a613710354b70415834566339437077504b5a3f02656404724f4e6b06343720316942127a794220394b5a3f766d56777671647358381336724b2e7362576420504b7449764b3763317902513511425948344a5550694a326e69703f627533127a575a4544617445726d3749663446557230034d4c750a416e53334d4465644d540f2e6f623068514c433367214b37457204332035610232720c687739387467502c64594c790c6376532d675853374554477004317956451465566f6e344a6f762c2e636e7937556a61464172084e452143464166300149093056416a696c4d6e4f0e556a5374776e754a6358794e6b500a52636e2c5a6f7a4f46490d38783f443874774838743f6a790967444f52367a69706f08534a5921716867310e4e414853334566754255212c787312652e634c6d646f31435277722c2d555030780d7a4f2d6758692e4566795649390378736e0e3345584f2d6f444356493561646f06615a4144535a03664f740b54792e32545378416e654e0c7665334562474a4539652e630861746f44794267580d2e6f76616836587152363975560e7253647744612d4d444b747748530c323147747376616c454c347412354b6c6b316d4e7372712d4d3543644d7638000954756851767146516a0e52733979335939535a73482c686f14532e497661525576796c63316d33416a3842734c0446367230085976716c59665778026638106b217546206e5352362171783f7a472e08352c4a6f6a75783f026d4a02352c02736e0b424d764f4a4544654a457a096432583064516e53460848532d49484b7463114333205461786b6a756459445752326657047344576c0150044e4976710820316d5a6366755603354352026a6d0320546d0c4139474a325053466b72535614314b42417a5770594c435a3f54342e41763064320d4b6c4d396978775465463f6a2c1477544f7059586946366a695a77212c333f54692e147a53705962303377544b6c4d7a38784d4c536873104b4a41393856736a6556206a75566772025a45",
+      "decoded": [
+        "QTalkvORwraJ",
+        "5et?5",
+        "lQXm3U",
+        "e.wPCVM!adwnKJ6",
+        "O",
+        "EDSpk9yRQv,Z",
+        "rCdUP",
+        "hQDWlIzC7oLaJ PWJc5",
+        "3UbuJMHSFEzGR fm",
+        "ALG.E!itoH",
+        "J",
+        "bq-",
+        "vKlUz",
+        "h2HmloDu7s5Gd 1",
+        "7greFA",
+        "ydg9uBEraBczmVA1O7c",
+        "q3?HyhgnutYn4J2DWBUj",
+        "-UbmpYXCp6r",
+        "",
+        "YXixATmh HGts1Wp T",
+        "tYLKRUPatYru.wr8.g",
+        "W",
+        "wvuhALe.Yj4VQ9eZcvCx",
+        "z,dQbCFwz4V",
+        "",
+        "47M1KV?ruhE5GRYr",
+        "JAPK.2jWZQ1S7?n0x",
+        "rmVoPO.2H8VQz4N2ziZY",
+        "KR?P,hYriRYn8FwXSd",
+        "vONAja7",
+        "5KpAX4Vc9CpwPKZ?",
+        "ed",
+        "rONk",
+        "47 1iB",
+        "zyB 9KZ?vmVwvqdsX8",
+        "6rK.sbWd PKtIvK7c1y",
+        "Q5",
+        "BYH4JUPiJ2nip?bu3",
+        "zWZEDatErm7If4FUr0",
+        "MLu",
+        "AnS3MDedMT",
+        ".ob0hQLC3g!K7Er",
+        "3 5a",
+        "2r",
+        "hw98tgP,dYLy",
+        "cvS-gXS7ETGp",
+        "1yVE",
+        "eVon4Jov,.cny7UjaFAr",
+        "NE!CFAf0",
+        "I",
+        "0VAjilMnO",
+        "UjStwnuJcXyNkP",
+        "Rcn,ZozOFI",
+        "8x?D8twH8t?jy",
+        "gDOR6zipo",
+        "SJY!qhg1",
+        "NAHS3EfuBU!,xs",
+        "e.cLmdo1CRwr,-UP0x",
+        "zO-gXi.EfyVI9",
+        "xsn",
+        "3EXO-oDCVI5ado",
+        "aZADSZ",
+        "fOt",
+        "Ty.2TSxAneN",
+        "ve3EbGJE9e.c",
+        "atoDyBgX",
+        ".ovah6XqR69uV",
+        "rSdwDa-MDKtwHS",
+        "21GtsvalEL4t",
+        "5Klk1mNsrq-M5CdMv8",
+        "",
+        "TuhQvqFQj",
+        "Rs9y3Y9SZsH,ho",
+        "S.IvaRUvylc1m3Aj8BsL",
+        "F6r0",
+        "YvqlYfWx",
+        "f8",
+        "k!uF nSR6!qx?zG.",
+        "5,Jojux?",
+        "mJ",
+        "5,",
+        "sn",
+        "BMvOJEDeJEz",
+        "d2X0dQnSF",
+        "HS-IHKtc",
+        "C3 TaxkjudYDWR2fW",
+        "sDWl",
+        "P",
+        "NIvq",
+        " 1mZcfuV",
+        "5CR",
+        "jm",
+        " Tm",
+        "A9GJ2PSFkrSV",
+        "1KBAzWpYLCZ?T4.Av0d2",
+        "KlM9ixwTeF?j,",
+        "wTOpYXiF6jiZw!,3?Ti.",
+        "zSpYb03wTKlMz8xMLShs",
+        "KJA98VsjeV juVgr",
+        "ZE"
+      ],
+      "hash": "1b33"
+    },
+    {
+      "name": "random/objects-1",
+      "schema": [
+        {
+          "id": "uint",
+          "name": "string",
+          "score": "float"
+        }
+      ],
+      "value": [
+        {
+          "id": 8270377880945435,
+          "name": "jCRgji7MPaJwHSZE9aZg",
+          "score": -4.027236346155405e-284
+        },
+        {
+          "id": 396200853145053,
+          "name": "Zc",
+          "score": -5.5209245067089794e-68
+        },
+        {
+          "id": 7439617658429733,
+          "name": "ZYPa- fWtET0V",
+          "score": 8.040954296011477e-275
+        },
+        {
+          "id": 1158290365975618,
+          "name": "W-QjWdIri",
+          "score": -8.6552458954975e+290
+        },
+        {
+          "id": 1633766988499647,
+          "name": "1ap?",
+          "score": -3.580737430602312e-233
+        },
+        {
+          "id": 6938845382159889,
+          "name": ".QDC.s!uJIPe7ITqNob0",
+          "score": -9.56242483574897e+85
+        }
+      ],
+      "encoded": "06e01d61dd67c0831b146a4352676a69374d50614a7748535a4539615a678517f44b4fc8b522e0016857b31c85dd025a63b1f7d0a4ae78887be01a6e4af7cba1250d5a5950612d20665774455430560706458effb3baa5e0041d757dcf8c4209572d516a5764497269fc56341fc1a26a4fe005cde704fecabf043161703f8fac7680715a28ebe018a6d7d627ae11142e5144432e7321754a495065374954714e6f6230d1c89c8f9b627ec9",
+      "decoded": [
+        {
+          "id": 8270377880945435,
+          "name": "jCRgji7MPaJwHSZE9aZg",
+          "score": -4.027236346155405e-284
+        },
+        {
+          "id": 396200853145053,
+          "name": "Zc",
+          "score": -5.5209245067089794e-68
+        },
+        {
+          "id": 7439617658429733,
+          "name": "ZYPa- fWtET0V",
+          "score": 8.040954296011477e-275
+        },
+        {
+          "id": 1158290365975618,
+          "name": "W-QjWdIri",
+          "score": -8.6552458954975e+290
+        },
+        {
+          "id": 1633766988499647,
+          "name": "1ap?",
+          "score": -3.580737430602312e-233
+        },
+        {
+          "id": 6938845382159889,
+          "name": ".QDC.s!uJIPe7ITqNob0",
+          "score": -9.56242483574897e+85
+        }
+      ],
+      "hash": "1b3b03353326"
+    },
+    {
+      "name": "random/objects-2",
+      "schema": [
+        {
+          "id": "uint",
+          "name": "string",
+          "score": "float"
+        }
+      ],
+      "value": [
+        {
+          "id": 5732596362675206,
+          "name": "Cd z4dcfa-wv,JoL",
+          "score": 5.936119833495468e-34
+        },
+        {
+          "id": 512913735738924,
+          "name": "?5S3250JU",
+          "score": -1.7144070751965044e-232
+        },
+        {
+          "id": 4028549713754193,
+          "name": "xE1iBIzCh?j",
+          "score": 6.782544010784477e+102
+        },
+        {
+          "id": 1671425412815052,
+          "name": "2r87ADG.UT,NwDSZcv,N",
+          "score": 2.1845264569856227e+218
+        },
+        {
+          "id": 2421324820943126,
+          "name": "O7U",
+          "score": -5.1933452021330594e-110
+        },
+        {
+          "id": 2885788260508869,
+          "name": "x TCVkPaFcP0V6",
+          "score": -6.242425255477429e-223
+        },
+        {
+          "id": 4485470866977881,
+          "name": "hsjO.65uZcXuxs9uR",
+          "score": 7.417998418677598e-81
+        },
+        {
+          "id": 165301392657178,
+          "name": "",
+          "score": 3.4724297700449823e-13
+        },
+        {
+          "id": 1477656325419088,
+          "name": "6fKd6jO36",
+          "score": -7.319727344438433e-35
+        }
+      ],
+      "encoded": "09e0145dc419d68406104364207a34646366612d77762c4a6f4c3908a85d869bc7fbe001d27e0904e62c093f3553333235304a558fd108d81607f249e00e4ff1d2a5f8510b7845316942497a43683f6a554839e3cbc67d0ce005f0270dffd8cc14327238374144472e55542c4e7744535a63762c4e6d43cd8fc1e5de28e0089a2e9dd69116034f3755a93f394a32c6b697e00a409bf02a24c50e78205443566b506146635030563691cce202d372bbdfe00fef8311ad34591168736a4f2e3635755a63587578733975522f4c255b7d99e8a4e00096573aca4b1a003d586f5f9501258fe0053febac6070500936664b64366a4f3336b8d852ef7413dd61",
+      "decoded": [
+        {
+          "id": 5732596362675206,
+          "name": "Cd z4dcfa-wv,JoL",
+          "score": 5.936119833495468e-34
+        },
+        {
+          "id": 512913735738924,
+          "name": "?5S3250JU",
+          "score": -1.7144070751965044e-232
+        },
+        {
+          "id": 4028549713754193,
+          "name": "xE1iBIzCh?j",
+          "score": 6.782544010784477e+102
+        },
+        {
+          "id": 1671425412815052,
+          "name": "2r87ADG.UT,NwDSZcv,N",
+          "score": 2.1845264569856227e+218
+        },
+        {
+          "id": 2421324820943126,
+          "name": "O7U",
+          "score": -5.1933452021330594e-110
+        },
+        {
+          "id": 2885788260508869,
+          "name": "x TCVkPaFcP0V6",
+          "score": -6.242425255477429e-223
+        },
+        {
+          "id": 4485470866977881,
+          "name": "hsjO.65uZcXuxs9uR",
+          "score": 7.417998418677598e-81
+        },
+        {
+          "id": 165301392657178,
+          "name": "",
+          "score": 3.4724297700449823e-13
+        },
+        {
+          "id": 1477656325419088,
+          "name": "6fKd6jO36",
+          "score": -7.319727344438433e-35
+        }
+      ],
+      "hash": "1b3b03353326"
+    }
+  ]
+}

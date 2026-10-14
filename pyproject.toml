@@ -1,0 +1,49 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "js-binary"
+version = "1.2.0"
+description = "Unofficial Python port of the js-binary binary format: compact, schema-driven encode/decode, smaller and faster than JSON/BSON."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Guilherme Souza (Sitegui)", email = "sitegui@sitegui.com.br" },
+]
+maintainers = [
+    { name = "lbardalezg", email = "16726832+lbardalezg@users.noreply.github.com" },
+]
+keywords = ["binary", "serialization", "encode", "decode", "json", "bson", "schema", "js-binary"]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/lbardalezg/js-binary"
+Repository = "https://github.com/lbardalezg/js-binary"
+Issues = "https://github.com/lbardalezg/js-binary/issues"
+Changelog = "https://github.com/lbardalezg/js-binary/blob/main/CHANGELOG.md"
+"Original project" = "https://github.com/sitegui/js-binary"
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "pytest-cov"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/js_binary"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/js_binary", "README.md", "LICENSE", "CHANGELOG.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
